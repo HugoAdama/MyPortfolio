@@ -77,7 +77,7 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
                 {p.img ? (
                   <img
                     className="shot"
-                    src={p.img}
+                    src={p.img.startsWith('http') ? p.img : `${import.meta.env.BASE_URL}${p.img.replace(/^\//, '')}`}
                     alt={`Captura de ${p.title}`}
                     loading="lazy"
                   />

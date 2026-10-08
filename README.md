@@ -16,7 +16,7 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 - **Interactive React Island:** A reactive project filtering system with real-time tag queries and smooth DOM transitions.
 - **Dark and Light Mode:** System-aware theme switcher with `localStorage` persistence and anti-FOUC script in the document head.
 - **Bilingual Internationalization (ES / EN):** Instant in-place language toggle between Spanish and English without full page reloads.
-- **Strict Visual Standards:** Custom SVG iconography throughout the user interface, eliminating decorative emojis for a clean and professional look.
+- **Custom Vector Iconography:** Accessible, lightweight inline SVG icons styled consistently with the application design tokens.
 - **Accessible Interactions:** Built with keyboard focus states, semantic HTML5 landmarks, and WCAG AA contrast compliance.
 - **Responsive Layout:** Tailored grid layouts for mobile, tablet, and desktop screens.
 
