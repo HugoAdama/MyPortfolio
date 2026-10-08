@@ -1,5 +1,6 @@
 ---
 import CodeWindow from './CodeWindow.astro';
+import { getAssetPath } from '../utils/paths';
 ---
 <section class="hero">
   <div class="hero-content">
@@ -29,7 +30,7 @@ import CodeWindow from './CodeWindow.astro';
         <span class="i18n-en">View projects</span>
       </a>
 
-      <a class="btn cv-btn" href={`${import.meta.env.BASE_URL}cv-hugo-adama.pdf`} target="_blank" rel="noopener noreferrer" download="CV-Hugo-Adama.pdf">
+      <a class="btn cv-btn" href={getAssetPath('cv-hugo-adama.pdf')} target="_blank" rel="noopener noreferrer" download="CV-Hugo-Adama.pdf">
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>

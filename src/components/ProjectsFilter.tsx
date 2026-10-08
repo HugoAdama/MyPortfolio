@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import type { Project } from '../data/projects';
 import { statusLabels, uiLabels } from '../data/projects';
+import { getAssetPath } from '../utils/paths';
 
 interface ProjectsFilterProps {
   projects: Project[];
@@ -9,6 +10,7 @@ interface ProjectsFilterProps {
 export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
   const [lang, setLang] = useState<'es' | 'en'>('es');
   const [activeFilter, setActiveFilter] = useState('ALL');
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     // Read initial language from data-lang or default to 'es'
@@ -74,16 +76,19 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
           return (
             <article className="card" key={p.title}>
               <div className="card-thumb">
-                {p.img ? (
+                {p.img && !failedImages[p.title] ? (
                   <img
                     className="shot"
-                    src={p.img.startsWith('http') ? p.img : `${import.meta.env.BASE_URL}${p.img.replace(/^\//, '')}`}
+                    src={getAssetPath(p.img)}
                     alt={`Captura de ${p.title}`}
                     loading="lazy"
+                    onError={() => {
+                      setFailedImages((prev) => ({ ...prev, [p.title]: true }));
+                    }}
                   />
                 ) : (
                   <div className="shot ph" aria-hidden="true">
-                    <span>{lang === 'es' ? 'Captura de proyecto' : 'Project preview'}</span>
+                    <span>{lang === 'es' ? `Captura de ${p.title}` : `${p.title} preview`}</span>
                   </div>
                 )}
               </div>
