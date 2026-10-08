@@ -26,10 +26,10 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 
 | Layer | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Framework** | Astro | Static site generation and islands orchestration |
+| **Framework** | Astro 7 | Static site generation and islands orchestration |
 | **UI Library** | React 19 | Interactive client components |
 | **Language** | TypeScript | Type safety for project definitions and state logic |
-| **Styling** | Vanilla CSS | Custom design system tokens, CSS variables, and layout |
+| **Styling** | Vanilla CSS (Modular) | Custom design system tokens, CSS variables, and layout modules |
 | **Fonts** | Inter & JetBrains Mono | Primary typography and monospace code presentation |
 | **Icons** | Custom Inline SVGs | Scalable and theme-aware vector icons |
 
@@ -48,26 +48,35 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 
 ```text
 portfolio/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml         # GitHub Actions CI/CD for automated GitHub Pages deployment
 ├── public/
-│   ├── capturas/          # High-resolution screenshots of featured projects
-│   ├── cv-hugo-adama.pdf  # Downloadable resume
-│   └── favicon.svg        # Vector favicon
+│   ├── capturas/              # High-resolution screenshots of featured projects
+│   ├── cv-hugo-adama.pdf      # Downloadable resume
+│   └── favicon.svg            # Vector favicon
 ├── src/
 │   ├── components/
-│   │   ├── About.astro          # Biography, core pillars, and categorized tech stack
-│   │   ├── CodeWindow.astro     # Interactive code snippet card with typing animation
-│   │   ├── Footer.astro         # Contact call-to-action, copy email button, and navigation
-│   │   ├── Header.astro         # Sticky navigation bar with theme and language toggles
-│   │   ├── Hero.astro           # Introduction, availability status, and primary CTAs
-│   │   └── ProjectsFilter.tsx   # React client island for tag-based filtering
+│   │   ├── About.astro        # Biography, core pillars, and categorized tech stack
+│   │   ├── CodeWindow.astro   # Interactive code snippet card with typing animation
+│   │   ├── Footer.astro       # Contact call-to-action, copy email button, and navigation
+│   │   ├── Header.astro       # Sticky navigation bar with theme and language toggles
+│   │   ├── Hero.astro         # Introduction, availability status, and primary CTAs
+│   │   └── ProjectsFilter.tsx # React client island for tag-based filtering
 │   ├── data/
-│   │   └── projects.ts          # Typed project datasets with bilingual descriptions
+│   │   └── projects.ts        # Typed project datasets with bilingual descriptions
 │   ├── layouts/
-│   │   └── Layout.astro         # HTML document skeleton, SEO metadata, and anti-FOUC script
+│   │   └── Layout.astro       # HTML document skeleton, SEO metadata, and anti-FOUC script
 │   ├── styles/
-│   │   └── global.css           # Design tokens, color schemes, resets, and media queries
+│   │   ├── tokens.css         # Design tokens, color palettes (dark/light), and i18n rules
+│   │   ├── base.css           # Resets, body styles, typography, and focus states
+│   │   ├── layout.css         # Page containers (.wrap), section titles (h2), and rhythm
+│   │   ├── header.css         # Navigation bar and header control buttons
+│   │   ├── filters.css        # Interactive technology pill buttons
+│   │   ├── cards.css          # Project grid 2x2 layout, card architecture, and actions
+│   │   └── global.css         # Master bundle importing all CSS modules
 │   └── pages/
-│       └── index.astro          # Root page composing layout and components
+│       └── index.astro        # Root page composing layout and components
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
@@ -79,7 +88,7 @@ portfolio/
 
 ### Prerequisites
 
-- Node.js version 18.17.1 or higher
+- Node.js version 22.12.0 or higher
 - npm, pnpm, or yarn
 
 ### Installation
@@ -103,7 +112,7 @@ portfolio/
    npm run dev
    ```
 
-   The application will be accessible at `http://localhost:4321`.
+   The application will be accessible at `http://localhost:4321/MyPortfolio`.
 
 ---
 
@@ -111,9 +120,17 @@ portfolio/
 
 | Command | Action |
 | :--- | :--- |
-| `npm run dev` | Runs the development server at `http://localhost:4321` |
+| `npm run dev` | Runs the development server at `http://localhost:4321/MyPortfolio` |
 | `npm run build` | Compiles static production build into `./dist/` |
 | `npm run preview` | Previews the production build locally |
+
+---
+
+## Deployment
+
+The project is configured for continuous deployment using GitHub Actions. Every push to the `main` branch triggers `.github/workflows/deploy.yml`, which compiles the static site and deploys it to GitHub Pages.
+
+Live URL: [https://hugoadama.github.io/MyPortfolio/](https://hugoadama.github.io/MyPortfolio/)
 
 ---
 
