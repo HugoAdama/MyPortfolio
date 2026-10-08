@@ -1,0 +1,138 @@
+---
+---
+<div class="editor">
+  <div class="bar">
+    <div class="dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="file-name">
+      <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+      hugo.ts
+    </span>
+    <span class="lang-tag">TypeScript</span>
+  </div>
+  <pre class="code mono" id="code-snippet" aria-label="Resumen en código"><span class="k">const</span> <span class="p">hugoAdama</span> = &#123;
+  rol: <span class="s">"Frontend & Full-Stack"</span>,
+  ubicacion: <span class="s">"Lima, Perú"</span>,
+  stack: [
+    <span class="s">"Astro"</span>,
+    <span class="s">"TypeScript"</span>,
+    <span class="s">"React"</span>,
+    <span class="s">"Tailwind"</span>
+  ],
+  filosofia: <span class="s">"Zero-FOUC & High Speed"</span>,
+  disponible: <span class="k">true</span>,
+&#125;;</pre>
+</div>
+
+<script>
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pre = document.getElementById('code-snippet');
+  
+  if (!calm && pre) {
+    const rawHTML = pre.innerHTML;
+    const tokens = rawHTML.match(/<[^>]+>|&[a-z0-9#]+;|[\s\S]/g) || [];
+    pre.style.minHeight = `${pre.offsetHeight}px`;
+    pre.classList.add('typing');
+    pre.innerHTML = '';
+    let i = 0;
+    const timer = setInterval(() => {
+      i += 2;
+      pre.innerHTML = tokens.slice(0, i).join('');
+      if (i >= tokens.length) {
+        clearInterval(timer);
+        pre.classList.remove('typing');
+      }
+    }, 20);
+  }
+</script>
+
+<style>
+  .editor {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .editor:hover {
+    border-color: rgba(111, 211, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--line);
+    font: 0.78rem 'JetBrains Mono', monospace;
+    color: var(--muted);
+  }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background: #FF5F56; }
+  .dot.yellow { background: #FFBD2E; }
+  .dot.green { background: #27C93F; }
+
+  .file-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .file-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--cyan);
+  }
+
+  .lang-tag {
+    font-size: 0.7rem;
+    color: var(--cyan);
+    background: rgba(111, 211, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .code {
+    padding: 18px 20px;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    overflow-x: hidden;
+    white-space: pre;
+    color: var(--text);
+  }
+
+  @media (max-width: 480px) {
+    .code {
+      font-size: 0.8rem;
+      padding: 14px 16px;
+      line-height: 1.6;
+    }
+  }
+</style>

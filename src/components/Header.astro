@@ -1,0 +1,110 @@
+---
+---
+<header>
+  <div class="wrap">
+    <a href="/" class="logo mono">hugoadama<span>.dev</span></a>
+    
+    <div class="nav-group">
+      <nav>
+        <a href="#proyectos">
+          <span class="i18n-es">Proyectos</span>
+          <span class="i18n-en">Projects</span>
+        </a>
+        <a href="#sobre-mi">
+          <span class="i18n-es">Sobre mí</span>
+          <span class="i18n-en">About</span>
+        </a>
+        <a href="#stack">
+          <span class="i18n-es">Tech Stack</span>
+          <span class="i18n-en">Tech Stack</span>
+        </a>
+        <a href="#contacto">
+          <span class="i18n-es">Contacto</span>
+          <span class="i18n-en">Contact</span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <button id="lang-toggle" class="control-btn" type="button" aria-label="Cambiar idioma / Change language">
+          <svg class="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="lang-indicator">ES</span>
+        </button>
+
+        <!-- Theme Toggle (Dark / Light) -->
+        <button id="theme-toggle" class="control-btn" type="button" aria-label="Cambiar tema claro/oscuro">
+          <!-- Sun icon (shown in dark mode to switch to light) -->
+          <svg id="theme-sun" class="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <!-- Moon icon (shown in light mode to switch to dark) -->
+          <svg id="theme-moon" class="control-icon" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function updateThemeIcons() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const sunIcon = document.getElementById('theme-sun');
+    const moonIcon = document.getElementById('theme-moon');
+    if (sunIcon && moonIcon) {
+      sunIcon.style.display = isLight ? 'none' : 'block';
+      moonIcon.style.display = isLight ? 'block' : 'none';
+    }
+  }
+
+  function updateLangIndicator() {
+    const lang = document.documentElement.getAttribute('data-lang') || 'es';
+    const indicator = document.getElementById('lang-indicator');
+    if (indicator) {
+      indicator.textContent = lang.toUpperCase();
+    }
+  }
+
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-toggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeIcons();
+    });
+  }
+
+  // Language toggle
+  const langBtn = document.getElementById('lang-toggle');
+  if (langBtn) {
+    langBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-lang') || 'es';
+      const next = current === 'es' ? 'en' : 'es';
+      document.documentElement.setAttribute('data-lang', next);
+      document.documentElement.setAttribute('lang', next);
+      localStorage.setItem('lang', next);
+      updateLangIndicator();
+      window.dispatchEvent(new CustomEvent('lang-change', { detail: { lang: next } }));
+    });
+  }
+
+  // Initialize display states
+  updateThemeIcons();
+  updateLangIndicator();
+</script>

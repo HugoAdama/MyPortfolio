@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProjectsFilter from '../components/ProjectsFilter';
+import About from '../components/About.astro';
+import Footer from '../components/Footer.astro';
+import { projects } from '../data/projects';
+---
+
+<Layout
+  title="Hugo Adama · Frontend & Full-Stack Developer"
+  description="Portfolio de Hugo Adama, Frontend & Full-Stack Developer: aplicaciones de alto rendimiento con Astro, TypeScript y React."
+>
+  <Header />
+  
+  <main class="wrap">
+    <Hero />
+
+    <section id="proyectos">
+      <h2>
+        <span class="i18n-es">Proyectos</span>
+        <span class="i18n-en">Projects</span>
+      </h2>
+      <p class="lead i18n-es">
+        Filtra por tecnología. Todos los proyectos cuentan con repositorio de código abierto y demos desplegados.
+      </p>
+      <p class="lead i18n-en">
+        Filter by technology. All projects feature open-source repositories and live deployments.
+      </p>
+      <ProjectsFilter client:load projects={projects} />
+    </section>
+
+    <About />
+  </main>
+
+  <Footer />
+</Layout>

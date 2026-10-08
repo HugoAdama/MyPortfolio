@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Hugo Adama · Frontend & Full-Stack Developer",
+  description = "Portfolio de Hugo Adama, Frontend & Full-Stack Developer. Especialista en rendimiento web, Core Web Vitals y UI/UX con Astro, TypeScript y Tailwind CSS."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  
+  <!-- Anti-FOUC Theme & Language Init Script -->
+  <script is:inline>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+
+        const savedLang = localStorage.getItem('lang') || 'es';
+        document.documentElement.setAttribute('data-lang', savedLang);
+        document.documentElement.setAttribute('lang', savedLang);
+      } catch (e) {}
+    })();
+  </script>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content="Frontend & Full-Stack Developer · Crafting high-performance web apps with Astro, TypeScript & Modern UI/UX." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://github.com/HugoAdama.png" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip" href="#proyectos">Saltar al contenido</a>
+  <slot />
+</body>
+</html>
