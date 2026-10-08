@@ -1,0 +1,37 @@
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Headings with accent line */
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 80px 0 10px;
+  letter-spacing: -0.02em;
+}
+
+h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.lead {
+  color: var(--muted);
+  margin-bottom: 22px;
+  max-width: 62ch;
+  font-size: 0.98rem;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 860px) {
+  .wrap {
+    padding: 0 20px;
+  }
+}
