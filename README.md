@@ -37,10 +37,11 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 
 ## Featured Projects in Portfolio
 
-1. **BeatNest:** In-browser private audio player with 5-band equalizer, real-time Canvas visualizer, and zero-cloud dependency.
-2. **Nimbus:** High-precision real-time weather web application built with clean architecture (SoC) and interactive 24-hour SVG temperature chart.
-3. **MiDespensa:** Smart recipe manager and offline-first Progressive Web App (PWA) with IndexedDB persistence.
-4. **Kanban_Tableu:** Accessible Kanban board (WCAG 2.1 AA) with full keyboard navigation and native Drag and Drop.
+1. **Spartan Gym:** High-conversion fitness landing page built with Astro and TypeScript, featuring a zero-friction WhatsApp lead conversion funnel and extreme Core Web Vitals optimization.
+2. **BeatNest:** In-browser private audio player with 5-band equalizer, real-time Canvas visualizer, and zero-cloud dependency.
+3. **Nimbus:** High-precision real-time weather web application built with clean architecture (SoC) and interactive 24-hour SVG temperature chart.
+4. **MiDespensa:** Smart recipe manager and offline-first Progressive Web App (PWA) with IndexedDB persistence.
+5. **Kanban_Tableu:** Accessible Kanban board (WCAG 2.1 AA) with full keyboard navigation and native Drag and Drop.
 
 ---
 

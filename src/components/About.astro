@@ -1,4 +1,6 @@
 ---
+import { getAssetPath } from '../utils/paths';
+
 const techStack = [
   {
     category_es: "Frontend & Frameworks Modernos",
@@ -29,10 +31,11 @@ const techStack = [
   <div class="about">
     <div class="photo-wrapper">
       <img
-        src="https://github.com/HugoAdama.png"
-        alt="Hugo Adama avatar"
+        src={getAssetPath('hugo-adama.png')}
+        alt="Hugo Adama"
         class="photo"
         loading="lazy"
+        decoding="async"
         width="200"
         height="200"
       />

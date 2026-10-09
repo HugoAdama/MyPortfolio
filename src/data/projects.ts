@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Spartan Gym',
+    desc_es: 'Landing page de alta conversión para centro fitness construida con Astro y TypeScript. Incluye embudo a WhatsApp sin fricción, modal nativo <dialog>, pase VIP digital y optimización Core Web Vitals.',
+    desc_en: 'High-conversion fitness landing page built with Astro and TypeScript. Features a zero-friction WhatsApp conversion funnel, native <dialog> modal, digital VIP pass, and Core Web Vitals optimization.',
+    tags: ['Astro', 'TypeScript', 'UI/UX'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Spartan_Gym/',
+    repo: 'https://github.com/HugoAdama/Spartan_Gym',
+    img: '/capturas/spartan-gym.png',
+  },
+  {
     title: 'BeatNest',
     desc_es: 'Reproductor de audio local y privado en el navegador. Incluye ecualizador de 5 bandas, visualizador en tiempo real con Canvas, crossfade y letras sincronizadas con cero uso de nube.',
     desc_en: 'Private in-browser local audio player with a 5-band EQ, real-time Canvas visualizer, crossfade, and synced lyrics. Zero cloud, 100% private.',
