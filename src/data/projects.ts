@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Lavanda',
+    desc_es: 'Landing page moderna y ultrarrápida para LAVANDA, un servicio eco-friendly de lavandería y tintorería a domicilio bajo demanda. Construida con Astro, TypeScript y CSS moderno con cero JavaScript en el cliente.',
+    desc_en: 'Modern, ultra-fast landing page for LAVANDA, an eco-friendly on-demand laundry and dry-cleaning delivery service. Built with Astro, TypeScript, and zero-JS modern CSS.',
+    tags: ['Astro', 'TypeScript', 'UI/UX'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Lavanda/',
+    repo: 'https://github.com/HugoAdama/Lavanda',
+    img: '/capturas/lavanda.png',
+  },
+  {
     title: 'Spartan Gym',
     desc_es: 'Landing page de alta conversión para centro fitness construida con Astro y TypeScript. Incluye embudo a WhatsApp sin fricción, modal nativo <dialog>, pase VIP digital y optimización Core Web Vitals.',
     desc_en: 'High-conversion fitness landing page built with Astro and TypeScript. Features a zero-friction WhatsApp conversion funnel, native <dialog> modal, digital VIP pass, and Core Web Vitals optimization.',
