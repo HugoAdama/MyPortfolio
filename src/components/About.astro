@@ -28,101 +28,160 @@ const techStack = [
     <span class="i18n-en">About me</span>
   </h2>
   
-  <div class="about">
-    <div class="photo-wrapper">
-      <img
-        src={getAssetPath('hugo-adama.png')}
-        alt="Hugo Adama"
-        class="photo"
-        loading="lazy"
-        decoding="async"
-        width="200"
-        height="200"
-      />
-    </div>
+  <div class="about-bento">
+    <!-- Profile Card (Left Column) -->
+    <aside class="profile-card">
+      <div class="photo-wrapper">
+        <img
+          src={getAssetPath('hugo-adama.png')}
+          alt="Hugo Adama"
+          class="photo"
+          loading="lazy"
+          decoding="async"
+          width="180"
+          height="180"
+        />
+        <div class="photo-badge">
+          <span class="status-dot"></span>
+          <span class="i18n-es">Disponible</span>
+          <span class="i18n-en">Available</span>
+        </div>
+      </div>
 
-    <div class="about-info">
-      <p class="about-lead i18n-es">
-        Desarrollador <strong>Frontend & Full-Stack</strong> enfocado en crear experiencias digitales que combinan diseño de alto impacto, accesibilidad y velocidad de carga extrema.
-      </p>
+      <div class="profile-header">
+        <h3 class="profile-name">Hugo Adama</h3>
+        <p class="profile-title">Frontend & Full-Stack Developer</p>
+      </div>
 
-      <p class="about-lead i18n-en">
-        <strong>Frontend & Full-Stack Developer</strong> dedicated to crafting digital experiences that combine high visual impact, strict accessibility, and blazing fast performance.
-      </p>
+      <div class="profile-divider"></div>
 
-      <ul class="highlights">
-        <li>
-          <div class="hl-icon-box">
-            <svg class="hl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
-              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-2.05 11a22.35 22.35 0 0 1-4 2z"></path>
-              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
-              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+      <ul class="facts-list">
+        <li class="fact-item">
+          <div class="fact-icon-box">
+            <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
             </svg>
           </div>
-          <div>
-            <span class="i18n-es"><strong>Enfoque actual:</strong> Construyendo plataformas web de alto rendimiento y arquitectura JAMstack ultrarrápida con <strong>Astro</strong>, <strong>TypeScript</strong> y <strong>Tailwind CSS</strong>.</span>
-            <span class="i18n-en"><strong>Current focus:</strong> Building high-performance web platforms and ultra-fast JAMstack architecture with <strong>Astro</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>.</span>
+          <div class="fact-content">
+            <span class="fact-label i18n-es">Ubicación</span>
+            <span class="fact-label i18n-en">Location</span>
+            <span class="fact-val">Lima, Perú</span>
           </div>
         </li>
 
-        <li>
-          <div class="hl-icon-box">
-            <svg class="hl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        <li class="fact-item">
+          <div class="fact-icon-box">
+            <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
             </svg>
           </div>
-          <div>
-            <span class="i18n-es"><strong>Experiencia:</strong> Desarrollo de soluciones corporativas B2B, catálogos interactivos, sistemas comerciales y aplicaciones a medida con foco en Core Web Vitals y conversión.</span>
-            <span class="i18n-en"><strong>Experience:</strong> Developing B2B corporate solutions, interactive catalogs, commercial systems, and custom web apps with a focus on Core Web Vitals and conversion.</span>
+          <div class="fact-content">
+            <span class="fact-label i18n-es">Especialidad</span>
+            <span class="fact-label i18n-en">Specialty</span>
+            <span class="fact-val i18n-es">JAMstack, Performance & UI/UX</span>
+            <span class="fact-val i18n-en">JAMstack, Performance & UI/UX</span>
           </div>
         </li>
 
-        <li>
-          <div class="hl-icon-box">
-            <svg class="hl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        <li class="fact-item">
+          <div class="fact-icon-box">
+            <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
           </div>
-          <div>
-            <span class="i18n-es"><strong>Filosofía:</strong> Cero código muerto, interfaces limpias, accesibilidad estricta y experiencia fluida (<em>Zero-FOUC</em>).</span>
-            <span class="i18n-en"><strong>Philosophy:</strong> Zero dead code, clean interfaces, strict accessibility, and seamless user experience (<em>Zero-FOUC</em>).</span>
+          <div class="fact-content">
+            <span class="fact-label i18n-es">Disponibilidad</span>
+            <span class="fact-label i18n-en">Availability</span>
+            <span class="fact-val i18n-es">Proyectos B2B & Frontend</span>
+            <span class="fact-val i18n-en">B2B & Frontend Projects</span>
           </div>
         </li>
       </ul>
+    </aside>
 
-      <dl class="facts">
-        <dt>
-          <span class="i18n-es">Ubicación</span>
-          <span class="i18n-en">Location</span>
-        </dt>
-        <dd class="fact-dd">
-          <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-          Lima, Perú
-        </dd>
+    <!-- Content & Highlights (Right Column) -->
+    <div class="about-main">
+      <div class="bio-card">
+        <p class="about-lead i18n-es">
+          Desarrollador <strong>Frontend & Full-Stack</strong> enfocado en concebir experiencias digitales modernas que unen diseño visual de alto impacto, accesibilidad rigurosa y velocidad de carga extrema.
+        </p>
+        <p class="about-lead i18n-en">
+          <strong>Frontend & Full-Stack Developer</strong> dedicated to crafting modern digital experiences that unite high-impact visual design, rigorous accessibility, and blazing fast load times.
+        </p>
+      </div>
 
-        <dt>
-          <span class="i18n-es">Especialidad</span>
-          <span class="i18n-en">Specialty</span>
-        </dt>
-        <dd>
-          <span class="i18n-es">Rendimiento Web, JAMstack & UI/UX</span>
-          <span class="i18n-en">Web Performance, JAMstack & UI/UX</span>
-        </dd>
+      <div class="highlights-grid">
+        <!-- Card: Enfoque actual -->
+        <article class="hl-card">
+          <div class="hl-header">
+            <div class="hl-icon-box cyan">
+              <svg class="hl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-2.05 11a22.35 22.35 0 0 1-4 2z"></path>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+              </svg>
+            </div>
+            <h4>
+              <span class="i18n-es">Enfoque actual</span>
+              <span class="i18n-en">Current focus</span>
+            </h4>
+          </div>
+          <p class="hl-text i18n-es">
+            Construyendo plataformas web de alto rendimiento y arquitectura JAMstack ultrarrápida con <strong>Astro</strong>, <strong>TypeScript</strong> y <strong>Tailwind CSS</strong>.
+          </p>
+          <p class="hl-text i18n-en">
+            Building high-performance web platforms and ultra-fast JAMstack architecture with <strong>Astro</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>.
+          </p>
+        </article>
 
-        <dt>
-          <span class="i18n-es">Disponibilidad</span>
-          <span class="i18n-en">Availability</span>
-        </dt>
-        <dd>
-          <span class="i18n-es">Soluciones a medida, B2B y proyectos frontend</span>
-          <span class="i18n-en">Custom solutions, B2B & frontend projects</span>
-        </dd>
-      </dl>
+        <!-- Card: Experiencia -->
+        <article class="hl-card">
+          <div class="hl-header">
+            <div class="hl-icon-box violet">
+              <svg class="hl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h4>
+              <span class="i18n-es">Experiencia</span>
+              <span class="i18n-en">Experience</span>
+            </h4>
+          </div>
+          <p class="hl-text i18n-es">
+            Desarrollo de soluciones corporativas B2B, catálogos interactivos, sistemas comerciales y aplicaciones a medida con foco en Core Web Vitals y conversión.
+          </p>
+          <p class="hl-text i18n-en">
+            Developing B2B corporate solutions, interactive catalogs, commercial systems, and custom web apps with a focus on Core Web Vitals and conversion.
+          </p>
+        </article>
+
+        <!-- Card: Filosofía -->
+        <article class="hl-card full-width">
+          <div class="hl-header">
+            <div class="hl-icon-box mint">
+              <svg class="hl-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h4>
+              <span class="i18n-es">Filosofía de desarrollo</span>
+              <span class="i18n-en">Engineering philosophy</span>
+            </h4>
+          </div>
+          <p class="hl-text i18n-es">
+            Cero código muerto, interfaces limpias, accesibilidad estricta y experiencia fluida (<em>Zero-FOUC</em>) con una arquitectura modular y escalable.
+          </p>
+          <p class="hl-text i18n-en">
+            Zero dead code, clean interfaces, strict accessibility, and seamless user experience (<em>Zero-FOUC</em>) with modular, scalable architecture.
+          </p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -170,84 +229,172 @@ const techStack = [
 </section>
 
 <style>
+  /* Bento Grid Container */
+  .about-bento {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-top: 8px;
+  }
+
+  /* Profile Card (Left Column) */
+  .profile-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  [data-theme="light"] .profile-card {
+    box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+  }
+
+  .profile-card:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.4);
+  }
+
+  [data-theme="light"] .profile-card:hover {
+    box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.1);
+  }
+
   .photo-wrapper {
     position: relative;
     border-radius: 16px;
     padding: 3px;
-    background: linear-gradient(135deg, rgba(111, 211, 255, 0.4), rgba(182, 156, 255, 0.2), transparent);
+    background: linear-gradient(135deg, rgba(111, 211, 255, 0.5), rgba(182, 156, 255, 0.35), transparent);
     width: fit-content;
   }
 
   [data-theme="light"] .photo-wrapper {
-    background: linear-gradient(135deg, rgba(2, 132, 199, 0.3), rgba(124, 58, 237, 0.2), transparent);
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(124, 58, 237, 0.3), transparent);
     box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.1);
   }
 
   .photo {
     display: block;
-    width: 180px;
-    height: 180px;
+    width: 170px;
+    height: 170px;
     border-radius: 14px;
     object-fit: cover;
     background: var(--bg2);
   }
 
-  .about-lead {
-    font-size: 1.05rem;
-    color: var(--text);
-    line-height: 1.6;
+  .photo-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--mint);
+    font: 600 0.72rem 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  .highlights {
+  [data-theme="light"] .photo-badge {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 8px var(--mint);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .profile-header {
+    text-align: center;
+    margin-top: 22px;
+  }
+
+  .profile-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .profile-title {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px;
+  }
+
+  .profile-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--line);
+    margin: 18px 0;
+  }
+
+  /* Facts List */
+  .facts-list {
     list-style: none;
     padding: 0;
-    margin: 22px 0;
+    margin: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
   }
 
-  .highlights li {
+  .fact-item {
     display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    color: var(--muted);
-    font-size: 0.96rem;
-    line-height: 1.55;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--bg2);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background 0.15s ease, border-color 0.15s ease;
   }
 
-  .hl-icon-box {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+  [data-theme="light"] .fact-item {
+    background: #F8FAFC;
+    border-color: var(--line);
+  }
+
+  .fact-item:hover {
+    border-color: rgba(111, 211, 255, 0.3);
+  }
+
+  [data-theme="light"] .fact-item:hover {
+    border-color: rgba(2, 132, 199, 0.3);
+  }
+
+  .fact-icon-box {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
     background: rgba(111, 211, 255, 0.1);
-    border: 1px solid rgba(111, 211, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-top: 2px;
   }
 
-  [data-theme="light"] .hl-icon-box {
+  [data-theme="light"] .fact-icon-box {
     background: rgba(2, 132, 199, 0.08);
-    border-color: rgba(2, 132, 199, 0.2);
-  }
-
-  .hl-svg {
-    width: 17px;
-    height: 17px;
-    color: var(--cyan);
-  }
-
-  .highlights strong {
-    color: var(--text);
-  }
-
-  .fact-dd {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
 
   .fact-icon {
@@ -256,6 +403,223 @@ const techStack = [
     color: var(--cyan);
   }
 
+  .fact-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .fact-label {
+    font: 600 0.68rem 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .fact-val {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Right Column (About Main) */
+  .about-main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bio-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  [data-theme="light"] .bio-card {
+    box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+  }
+
+  .bio-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--cyan), var(--violet));
+  }
+
+  .about-lead {
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .about-lead strong {
+    color: var(--cyan);
+    font-weight: 600;
+  }
+
+  [data-theme="light"] .about-lead strong {
+    color: #0284C7;
+  }
+
+  /* Highlights 2-Col Grid */
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .hl-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  [data-theme="light"] .hl-card {
+    box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+  }
+
+  .hl-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.4);
+  }
+
+  [data-theme="light"] .hl-card:hover {
+    box-shadow: 0 10px 24px -6px rgba(15, 23, 42, 0.1);
+  }
+
+  .hl-card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .hl-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hl-icon-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .hl-icon-box.cyan {
+    background: rgba(111, 211, 255, 0.12);
+    border: 1px solid rgba(111, 211, 255, 0.25);
+    color: var(--cyan);
+  }
+
+  [data-theme="light"] .hl-icon-box.cyan {
+    background: rgba(2, 132, 199, 0.08);
+    border-color: rgba(2, 132, 199, 0.25);
+    color: #0284C7;
+  }
+
+  .hl-icon-box.violet {
+    background: rgba(182, 156, 255, 0.12);
+    border: 1px solid rgba(182, 156, 255, 0.25);
+    color: var(--violet);
+  }
+
+  [data-theme="light"] .hl-icon-box.violet {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.25);
+    color: #7C3AED;
+  }
+
+  .hl-icon-box.mint {
+    background: rgba(142, 230, 184, 0.12);
+    border: 1px solid rgba(142, 230, 184, 0.25);
+    color: var(--mint);
+  }
+
+  [data-theme="light"] .hl-icon-box.mint {
+    background: rgba(5, 150, 105, 0.08);
+    border-color: rgba(5, 150, 105, 0.25);
+    color: #059669;
+  }
+
+  .hl-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hl-header h4 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .hl-text {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.58;
+    margin: 0;
+  }
+
+  .hl-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 860px) {
+    .about-bento {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .profile-card {
+      padding: 22px;
+    }
+
+    .highlights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hl-card.full-width {
+      grid-column: 1;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .photo {
+      width: 140px;
+      height: 140px;
+    }
+
+    .bio-card {
+      padding: 18px 20px;
+    }
+
+    .hl-card {
+      padding: 18px 20px;
+    }
+  }
+
+  /* Tech Stack Grid */
   .stack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -326,12 +690,5 @@ const techStack = [
   .chip:hover {
     border-color: var(--cyan);
     color: var(--cyan);
-  }
-
-  @media (max-width: 640px) {
-    .photo {
-      width: 140px;
-      height: 140px;
-    }
   }
 </style>
