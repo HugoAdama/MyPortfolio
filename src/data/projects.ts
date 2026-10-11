@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Wedding_Web',
+    desc_es: 'Invitación de boda digital editorial construida con Astro 7, TypeScript y CSS moderno. Incluye embudo RSVP a WhatsApp sin backend, sintetizador ambiental con Web Audio API en tiempo real y selector interactivo de paletas en vivo.',
+    desc_en: 'Editorial digital wedding invitation built with Astro 7, TypeScript & modern CSS. Features a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.',
+    tags: ['Astro', 'TypeScript', 'Web Audio'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Wedding_Web/',
+    repo: 'https://github.com/HugoAdama/Wedding_Web',
+    img: '/capturas/wedding-web.png',
+  },
+  {
     title: 'Nova Smile Lima',
     desc_es: 'Landing page moderna para clínica dental boutique construida con Astro 7, TypeScript y CSS moderno. Incluye diagnóstico digital 3D, experiencia serena y diseño accesible de alta conversión totalmente responsive.',
     desc_en: 'Boutique dental clinic landing page demo built with Astro 7, TypeScript, and modern CSS. Fast, accessible, and fully responsive.',
