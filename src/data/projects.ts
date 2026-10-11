@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Nova Smile Lima',
+    desc_es: 'Landing page moderna para clínica dental boutique construida con Astro 7, TypeScript y CSS moderno. Incluye diagnóstico digital 3D, experiencia serena y diseño accesible de alta conversión totalmente responsive.',
+    desc_en: 'Boutique dental clinic landing page demo built with Astro 7, TypeScript, and modern CSS. Fast, accessible, and fully responsive.',
+    tags: ['Astro', 'TypeScript', 'UI/UX'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Nova_Smile_Lima/',
+    repo: 'https://github.com/HugoAdama/Nova_Smile_Lima',
+    img: '/capturas/nova-smile-lima.png',
+  },
+  {
     title: 'Lavanda',
     desc_es: 'Landing page moderna y ultrarrápida para LAVANDA, un servicio eco-friendly de lavandería y tintorería a domicilio bajo demanda. Construida con Astro, TypeScript y CSS moderno con cero JavaScript en el cliente.',
     desc_en: 'Modern, ultra-fast landing page for LAVANDA, an eco-friendly on-demand laundry and dry-cleaning delivery service. Built with Astro, TypeScript, and zero-JS modern CSS.',
