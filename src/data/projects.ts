@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Wedding_Invitation',
+    desc_es: 'Invitación de boda interactiva con temática celestial bajo las estrellas, construida con Astro 7, TypeScript y CSS moderno. Cuenta con cuenta regresiva en tiempo real, sintetizador ambiental con Web Audio API, efectos de partículas 2D en Canvas e integración de confirmación RSVP.',
+    desc_en: 'Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS. Features real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.',
+    tags: ['Astro', 'TypeScript', 'Canvas'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Wedding_Invitation/',
+    repo: 'https://github.com/HugoAdama/Wedding_Invitation',
+    img: '/capturas/wedding-invitation.png',
+  },
+  {
     title: 'Wedding_Web',
     desc_es: 'Invitación de boda digital editorial construida con Astro 7, TypeScript y CSS moderno. Incluye embudo RSVP a WhatsApp sin backend, sintetizador ambiental con Web Audio API en tiempo real y selector interactivo de paletas en vivo.',
     desc_en: 'Editorial digital wedding invitation built with Astro 7, TypeScript & modern CSS. Features a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.',
