@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'CSS Motion Lab',
+    desc_es: 'Laboratorio interactivo y catálogo de 180 animaciones y patrones UI en CSS puro con código HTML y CSS coordinado. Incluye calibración de curvas Bézier en tiempo real, métricas de impacto en el pipeline de renderizado (GPU, Paint, Layout) y exportación a CodePen.',
+    desc_en: 'Interactive laboratory and curated catalog of 180 production-ready pure CSS animations & UI patterns with coordinated HTML and CSS. Features real-time Bézier curve calibration, rendering pipeline cost metrics (GPU, Paint, Layout), and 1-click CodePen export.',
+    tags: ['Astro', 'TypeScript', 'CSS'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/CSS_Motion_Lab/',
+    repo: 'https://github.com/HugoAdama/CSS_Motion_Lab',
+    img: '/capturas/css-motion-lab.png',
+  },
+  {
     title: 'Wedding_Invitation',
     desc_es: 'Invitación de boda interactiva con temática celestial bajo las estrellas, construida con Astro 7, TypeScript y CSS moderno. Cuenta con cuenta regresiva en tiempo real, sintetizador ambiental con Web Audio API, efectos de partículas 2D en Canvas e integración de confirmación RSVP.',
     desc_en: 'Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS. Features real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.',
