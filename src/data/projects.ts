@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Once Upon a Timeline',
+    desc_es: 'Archivo interactivo, musical y conmemorativo de TWICE. Explora la cronología discográfica completa, canciones oficiales, personalizador 3D de photocards con exportación en Canvas, simulador lumínico Candybong y soporte multi-idioma (ES/EN/KO/JA).',
+    desc_en: 'Interactive digital archive and fan experience celebrating TWICE. Features an interactive discography timeline, audio player, 3D photocard customizer with Canvas export, virtual Candybong lightstick simulator, and multi-language support (ES/EN/KO/JA).',
+    tags: ['Astro', 'TypeScript', 'CSS'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Once_upon_a_Timeline/musica/',
+    repo: 'https://github.com/HugoAdama/Once_upon_a_Timeline',
+    img: '/capturas/once-upon-a-timeline.png',
+  },
+  {
     title: 'CSS Motion Lab',
     desc_es: 'Laboratorio interactivo y catálogo de 180 animaciones y patrones UI en CSS puro con código HTML y CSS coordinado. Incluye calibración de curvas Bézier en tiempo real, métricas de impacto en el pipeline de renderizado (GPU, Paint, Layout) y exportación a CodePen.',
     desc_en: 'Interactive laboratory and curated catalog of 180 production-ready pure CSS animations & UI patterns with coordinated HTML and CSS. Features real-time Bézier curve calibration, rendering pipeline cost metrics (GPU, Paint, Layout), and 1-click CodePen export.',
