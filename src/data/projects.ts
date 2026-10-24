@@ -39,6 +39,16 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'Git Command Web',
+    desc_es: 'Guía interactiva y visual del modelo mental de Git. Incluye pipeline de transporte de cambios en 4 etapas, simulador de terminal en vivo, resolvedor de conflictos 3-way merge, simulador de Git Bisect, playground de rebase interactivo y generadores de comandos.',
+    desc_en: 'Interactive, visual mental-model guide to Git. Features a 4-stage change lifecycle pipeline, live terminal simulator, 3-way merge conflict resolver, Git Bisect simulator, interactive rebase playground, and command builders.',
+    tags: ['Astro', 'TypeScript', 'UI/UX'],
+    status: 'terminado',
+    demo: 'https://hugoadama.github.io/Git_Command_Web/',
+    repo: 'https://github.com/HugoAdama/Git_Command_Web',
+    img: '/capturas/git-command-web.png',
+  },
+  {
     title: 'Once Upon a Timeline',
     desc_es: 'Archivo interactivo, musical y conmemorativo de TWICE. Explora la cronología discográfica completa, canciones oficiales, personalizador 3D de photocards con exportación en Canvas, simulador lumínico Candybong y soporte multi-idioma (ES/EN/KO/JA).',
     desc_en: 'Interactive digital archive and fan experience celebrating TWICE. Features an interactive discography timeline, audio player, 3D photocard customizer with Canvas export, virtual Candybong lightstick simulator, and multi-language support (ES/EN/KO/JA).',

@@ -37,15 +37,18 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 
 ## Featured Projects in Portfolio
 
-1. **Wedding_Invitation:** Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS, featuring real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.
-2. **Wedding_Web:** Editorial digital wedding invitation built with Astro 7, TypeScript, and modern CSS, featuring a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.
-3. **Nova Smile Lima:** Boutique dental clinic landing page demo built with Astro 7, TypeScript, and modern CSS. Fast, accessible, and fully responsive.
-4. **Lavanda:** Modern, ultra-fast landing page for an eco-friendly on-demand laundry and dry-cleaning delivery service, built with Astro, TypeScript, and zero-JS modern CSS.
-5. **Spartan Gym:** High-conversion fitness landing page built with Astro and TypeScript, featuring a zero-friction WhatsApp lead conversion funnel and extreme Core Web Vitals optimization.
-6. **BeatNest:** In-browser private audio player with 5-band equalizer, real-time Canvas visualizer, and zero-cloud dependency.
-7. **Nimbus:** High-precision real-time weather web application built with clean architecture (SoC) and interactive 24-hour SVG temperature chart.
-8. **MiDespensa:** Smart recipe manager and offline-first Progressive Web App (PWA) with IndexedDB persistence.
-9. **Kanban_Tableu:** Accessible Kanban board (WCAG 2.1 AA) with full keyboard navigation and native Drag and Drop.
+1. **Git Command Web:** Interactive, visual mental-model guide to Git featuring a 4-stage change lifecycle pipeline, live terminal simulator, 3-way merge conflict resolver, Git Bisect simulator, and interactive rebase playground. Built with Astro and TypeScript.
+2. **Once Upon a Timeline:** Interactive digital archive and fan experience celebrating TWICE. Features an interactive discography timeline, audio player, 3D photocard customizer with Canvas export, virtual Candybong lightstick simulator, and multi-language support (ES/EN/KO/JA).
+3. **CSS Motion Lab:** Interactive laboratory and curated catalog of 180 production-ready pure CSS animations & UI patterns with coordinated HTML and CSS.
+4. **Wedding_Invitation:** Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS, featuring real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.
+5. **Wedding_Web:** Editorial digital wedding invitation built with Astro 7, TypeScript, and modern CSS, featuring a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.
+6. **Nova Smile Lima:** Boutique dental clinic landing page demo built with Astro 7, TypeScript, and modern CSS. Fast, accessible, and fully responsive.
+7. **Lavanda:** Modern, ultra-fast landing page for an eco-friendly on-demand laundry and dry-cleaning delivery service, built with Astro, TypeScript, and zero-JS modern CSS.
+8. **Spartan Gym:** High-conversion fitness landing page built with Astro and TypeScript, featuring a zero-friction WhatsApp lead conversion funnel and extreme Core Web Vitals optimization.
+9. **BeatNest:** In-browser private audio player with 5-band equalizer, real-time Canvas visualizer, and zero-cloud dependency.
+10. **Nimbus:** High-precision real-time weather web application built with clean architecture (SoC) and interactive 24-hour SVG temperature chart.
+11. **MiDespensa:** Smart recipe manager and offline-first Progressive Web App (PWA) with IndexedDB persistence.
+12. **Kanban_Tableu:** Accessible Kanban board (WCAG 2.1 AA) with full keyboard navigation and native Drag and Drop.
 
 ---
 
