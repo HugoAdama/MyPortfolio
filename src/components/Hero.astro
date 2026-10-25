@@ -170,15 +170,17 @@ import { getAssetPath } from '../utils/paths';
 
   /* Download CV button */
   .cv-btn {
-    background: rgba(182, 156, 255, 0.12);
-    color: var(--violet);
-    border: 1.5px solid rgba(182, 156, 255, 0.35);
+    background: rgba(22, 28, 54, 0.92);
+    color: #E2E8F0;
+    border: 1.5px solid rgba(182, 156, 255, 0.55);
+    backdrop-filter: blur(12px);
   }
 
   [data-theme="light"] .cv-btn {
-    background: rgba(124, 58, 237, 0.08);
-    border-color: rgba(124, 58, 237, 0.3);
+    background: #FFFFFF;
+    border-color: rgba(124, 58, 237, 0.4);
     color: #7C3AED;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
   }
 
   .cv-btn:hover {
@@ -186,13 +188,21 @@ import { getAssetPath } from '../utils/paths';
     color: #FFFFFF;
     border-color: var(--violet);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px -4px rgba(182, 156, 255, 0.4);
+    box-shadow: 0 6px 18px -4px rgba(182, 156, 255, 0.45);
   }
 
   .alt-btn {
-    background: transparent;
-    color: var(--text);
+    background: rgba(22, 28, 54, 0.92);
+    color: #FFFFFF;
     border: 1.5px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+
+  [data-theme="light"] .alt-btn {
+    background: #FFFFFF;
+    color: #0F172A;
+    border-color: var(--line);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   .alt-btn:hover {
@@ -202,10 +212,18 @@ import { getAssetPath } from '../utils/paths';
   }
 
   .icon-btn {
-    background: var(--bg2);
-    color: var(--muted);
+    background: rgba(22, 28, 54, 0.92);
+    color: #E2E8F0;
     border: 1.5px solid var(--line);
     padding: 11px 16px;
+    backdrop-filter: blur(12px);
+  }
+
+  [data-theme="light"] .icon-btn {
+    background: #FFFFFF;
+    color: #475569;
+    border-color: var(--line);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   .icon-btn:hover {
