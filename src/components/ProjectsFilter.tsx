@@ -109,12 +109,16 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
       </div>
 
       <div className="grid">
-        {paginatedProjects.map((p) => {
+        {paginatedProjects.map((p, index) => {
           const description = lang === 'en' ? p.desc_en : p.desc_es;
           const statusText = statusLabels[lang][p.status];
 
           return (
-            <article className="card" key={p.title}>
+            <article
+              className="card card-animated"
+              key={`${p.title}-${currentPage}-${activeCategory}`}
+              style={{ '--stagger': index } as React.CSSProperties}
+            >
               <div className="card-thumb">
                 {p.img && !failedImages[p.title] ? (
                   <img

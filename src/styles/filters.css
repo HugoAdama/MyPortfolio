@@ -22,6 +22,7 @@
   transition: transform 0.22s var(--ease-spring), border-color 0.2s ease, box-shadow 0.22s var(--ease-spring), background 0.2s ease, color 0.2s ease;
   user-select: none;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 [data-theme="light"] .filters button {

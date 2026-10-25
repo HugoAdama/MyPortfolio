@@ -43,9 +43,11 @@
   - `--glass-bevel` / `--glass-bevel-hover`: Top-edge specular highlight reflections (`inset 0 1px 1px 0 ...`).
   - `--glass-shadow` / `--glass-shadow-hover`: Multi-elevation layered atmospheric shadows.
   - `--glass-blur`: `blur(24px) saturate(...)` for vibrant backdrop refraction.
+- **GPU Sheen Crossfade:** For liquid glass hover highlights on `.card`, `.editor`, and panels, never transition CSS `background` gradients directly (which triggers expensive CPU repaints). Place `--glass-surface` on `::before` and `--glass-surface-hover` on `::after` with `opacity: 0 -> 1` GPU transitions.
+- **Fluid Staggered Entrance:** Grid items glide into view with `@keyframes cardEntrance` using spring physics (`cubic-bezier(0.16, 1, 0.3, 1)`) and `--stagger` index delays (`calc(var(--stagger, 0) * 45ms)`), preventing abrupt teleportation on filter/page switches.
 - **Spring Physics Easing:** Use `--ease-spring: cubic-bezier(0.16, 1, 0.3, 1)` for all card, button, and pill hover transitions.
 - **Tactile Active Feedback:** All interactive elements (buttons, cards, pills, chips, control toggles) must provide immediate `:active` tactile feedback (`transform: translateY(0) scale(0.96)`).
-- **Compositor-Only Animations:** Transitions must be restricted to GPU-accelerated properties (`transform`, `opacity`, `box-shadow`) with `will-change: transform` applied where needed.
+- **Compositor-Only Animations:** Transitions must be restricted to GPU-accelerated properties (`transform`, `opacity`, `box-shadow`) with `will-change: transform` and `backface-visibility: hidden` applied to eliminate subpixel raster jitter.
 
 ### Theme and Language System
 - **Theme (Dark / Light):** Controlled via `document.documentElement.dataset.theme`. Default is `dark`. All theme variables are defined in `tokens.css`.
@@ -62,12 +64,15 @@
   - `interactive`: "Experiencias Interactivas" / "Interactive Experiences"
   Each category pill displays a dynamic item count badge.
 
-### Background Canvas Performance
+### Background Canvas & Script Performance
 - `src/components/AuroraWaves.astro` renders an undulating Aurora Borealis canvas:
+  - Framerate-independent pointer tracking: Uses exponential smoothing (`1 - Math.exp(-delta * 3.8)`) for identical fluid inertia across 60Hz, 120Hz, and 144Hz displays.
   - Coordinate caching: Precomputes wave coordinates once per curtain to avoid redundant trigonometry calculations between fill and stroke passes.
   - Device pixel ratio capped at `1.75` to conserve battery and GPU fillrate on high-DPR mobile screens.
+  - Ambient glowing orbs use 3D hardware acceleration (`translate3d(0, 0, 0)` and `backface-visibility: hidden`).
   - Pauses execution during `visibilitychange` when tab is inactive.
   - Respects `@media (prefers-reduced-motion: reduce)`.
+- `src/components/CodeWindow.astro` typing cadence is locked to display V-sync using `requestAnimationFrame` timestamp deltas rather than `setInterval`.
 
 ### Assets and Base Path
 - The project runs with `base: '/MyPortfolio'` in `astro.config.mjs`.

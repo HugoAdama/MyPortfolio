@@ -171,10 +171,10 @@
         globalTime += delta;
       }
 
-      if (!ctx || !canvas) return;
-
-      mouseX += (targetMouseX - mouseX) * 0.035;
-      mouseY += (targetMouseY - mouseY) * 0.035;
+      // Framerate-independent exponential smoothing (fluid & uniform across 60Hz, 120Hz, 144Hz displays)
+      const lerp = 1 - Math.exp(-delta * 3.8);
+      mouseX += (targetMouseX - mouseX) * lerp;
+      mouseY += (targetMouseY - mouseY) * lerp;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -307,6 +307,8 @@
     border-radius: 50%;
     filter: blur(100px);
     opacity: 0.22;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
     will-change: transform, opacity;
     mix-blend-mode: screen;
   }

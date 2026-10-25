@@ -320,6 +320,7 @@ const icons: Record<string, string> = {
     align-items: center;
     transition: transform 0.32s var(--ease-spring), border-color 0.25s ease, box-shadow 0.32s var(--ease-spring);
     will-change: transform;
+    backface-visibility: hidden;
   }
 
   :global([data-theme="light"]) .profile-card {
@@ -576,6 +577,7 @@ const icons: Record<string, string> = {
     gap: 10px;
     transition: transform 0.28s var(--ease-spring), border-color 0.25s ease, box-shadow 0.28s var(--ease-spring);
     will-change: transform;
+    backface-visibility: hidden;
   }
 
   :global([data-theme="light"]) .hl-card {
@@ -728,6 +730,7 @@ const icons: Record<string, string> = {
     box-shadow: var(--glass-bevel), var(--glass-shadow);
     transition: transform 0.32s var(--ease-spring), border-color 0.25s ease, box-shadow 0.32s var(--ease-spring);
     will-change: transform;
+    backface-visibility: hidden;
   }
 
   :global([data-theme="light"]) .stack-card {
@@ -804,6 +807,7 @@ const icons: Record<string, string> = {
     transition: transform 0.22s var(--ease-spring), border-color 0.2s ease, box-shadow 0.22s var(--ease-spring), color 0.18s ease;
     user-select: none;
     will-change: transform;
+    backface-visibility: hidden;
   }
 
   .chip-icon-box {

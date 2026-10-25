@@ -16,7 +16,7 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 - **Interactive React Island:** A reactive project filtering and pagination system (6 projects per page) with solution-oriented categorization (`Web Apps & Tools`, `Landing Pages & B2B`, `Interactive Experiences`) and smooth section alignment.
 - **Liquid Glassmorphism Design System:** Advanced optical glass styling featuring directional light refraction gradients (`--glass-surface`), top specular bevels (`--glass-bevel`), and multi-elevation atmospheric shadows (`--glass-shadow`).
 - **Dynamic Aurora Borealis Background:** Real-time GPU/Canvas aurora curtain engine with cached trigonometric coordinates (50% reduction in calculations per frame), DPR clamping (1.75 max), and silky ambient lighting orbs.
-- **Fluid Spring Physics:** Tactile `:active` click interactions and native-feeling spring easing curves (`cubic-bezier(0.16, 1, 0.3, 1)`) across all cards, pills, and buttons.
+- **Fluid Spring Physics & 60-120fps Animations:** Staggered entrance cascades (`@keyframes cardEntrance` with `--stagger` delays), GPU compositor-accelerated liquid glass sheen crossfades, framerate-independent exponential pointer smoothing in the Aurora canvas, and native-feeling spring easing curves (`cubic-bezier(0.16, 1, 0.3, 1)`).
 - **Dark and Light Mode:** System-aware theme switcher with `localStorage` persistence and anti-FOUC script in the document head, fully tested for WCAG AAA contrast compliance.
 - **Bilingual Internationalization (ES / EN):** Instant in-place language toggle between Spanish and English without full page reloads.
 - **Custom Vector Iconography:** Accessible, lightweight inline SVG icons styled consistently with the application design tokens.

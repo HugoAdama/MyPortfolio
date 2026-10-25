@@ -43,21 +43,36 @@
     pre.style.minHeight = `${pre.offsetHeight}px`;
     pre.classList.add('typing');
     pre.innerHTML = '';
-    let i = 0;
-    const timer = setInterval(() => {
-      i += 2;
-      pre.innerHTML = tokens.slice(0, i).join('');
-      if (i >= tokens.length) {
-        clearInterval(timer);
+
+    let tokenIndex = 0;
+    let lastTime = performance.now();
+    const intervalMs = 24; // Smooth, frame-synced typing interval
+
+    function typeStep(now: number) {
+      if (!pre) return;
+      const elapsed = now - lastTime;
+      if (elapsed >= intervalMs) {
+        const count = Math.max(1, Math.floor(elapsed / intervalMs) * 2);
+        tokenIndex = Math.min(tokenIndex + count, tokens.length);
+        pre.innerHTML = tokens.slice(0, tokenIndex).join('');
+        lastTime = now;
+      }
+
+      if (tokenIndex < tokens.length) {
+        requestAnimationFrame(typeStep);
+      } else {
         pre.classList.remove('typing');
       }
-    }, 20);
+    }
+
+    requestAnimationFrame(typeStep);
   }
 </script>
 
 <style>
   .editor {
-    background: var(--glass-surface), var(--panel);
+    position: relative;
+    background: var(--panel);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
@@ -66,10 +81,34 @@
     box-shadow: var(--glass-bevel), var(--glass-shadow);
     transition: transform 0.32s var(--ease-spring), border-color 0.25s ease, box-shadow 0.32s var(--ease-spring);
     will-change: transform;
+    backface-visibility: hidden;
+    isolation: isolate;
+  }
+
+  .editor::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--glass-surface);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .editor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--glass-surface-hover);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-soft);
   }
 
   :global([data-theme="light"]) .editor {
-    background: var(--glass-surface), #FFFFFF;
+    background: #FFFFFF;
     box-shadow: var(--glass-bevel), var(--glass-shadow);
   }
 
@@ -77,6 +116,10 @@
     border-color: var(--glass-border-hover);
     box-shadow: var(--glass-bevel-hover), var(--glass-shadow-hover);
     transform: translateY(-4px);
+  }
+
+  .editor:hover::after {
+    opacity: 1;
   }
 
   :global([data-theme="light"]) .editor:hover {

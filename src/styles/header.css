@@ -88,6 +88,7 @@ header nav a:hover {
   cursor: pointer;
   transition: transform 0.2s var(--ease-spring), border-color 0.2s ease, color 0.18s ease, box-shadow 0.2s var(--ease-spring);
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 [data-theme="light"] .control-btn {

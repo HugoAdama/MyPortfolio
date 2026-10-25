@@ -6,7 +6,8 @@
 }
 
 .card {
-  background: var(--glass-surface), var(--panel);
+  position: relative;
+  background: var(--panel);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
@@ -15,27 +16,82 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.32s var(--ease-spring), border-color 0.25s ease, box-shadow 0.32s var(--ease-spring), background 0.25s ease;
+  transition: transform 0.32s var(--ease-spring), border-color 0.25s ease, box-shadow 0.32s var(--ease-spring);
   will-change: transform;
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
+/* Base liquid glass sheen layer */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--glass-surface);
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.3s var(--ease-soft);
+}
+
+/* Hover liquid glass sheen crossfade layer (GPU compositor accelerated) */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--glass-surface-hover);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-soft);
 }
 
 [data-theme="light"] .card {
+  background: var(--panel);
   box-shadow: var(--glass-bevel), var(--glass-shadow);
 }
 
 .card:hover {
-  background: var(--glass-surface-hover), var(--panel-hover);
   border-color: var(--glass-border-hover);
   transform: translateY(-6px);
   box-shadow: var(--glass-bevel-hover), var(--glass-shadow-hover);
 }
 
+.card:hover::after {
+  opacity: 1;
+}
+
 .card:active {
-  transform: translateY(-2px) scale(0.995);
+  transform: translateY(-2px) scale(0.992);
 }
 
 [data-theme="light"] .card:hover {
   box-shadow: var(--glass-bevel-hover), var(--glass-shadow-hover);
+}
+
+/* Fluid Staggered Entrance Physics for Filter and Pagination changes */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.982);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-animated {
+  animation: cardEntrance 0.38s var(--ease-spring) backwards;
+  animation-delay: calc(var(--stagger, 0) * 45ms);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-animated {
+    animation: none !important;
+  }
 }
 
 .card-thumb {
@@ -53,6 +109,8 @@
   object-position: top center;
   transform-origin: center center;
   transition: transform 0.45s var(--ease-spring);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .card:hover .shot:not(.ph) {
@@ -303,6 +361,7 @@
   transition: transform 0.22s var(--ease-spring), border-color 0.2s ease, box-shadow 0.22s var(--ease-spring), color 0.18s ease, background 0.2s ease;
   user-select: none;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .pagination-nav-btn {
