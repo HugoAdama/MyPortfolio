@@ -1,25 +1,24 @@
 ---
-// Aurora Glow Waves background component with dynamic fluid canvas waves
+// Aurora Borealis celestial ribbons & liquid glass ambient engine
 ---
 <div class="aurora-bg" aria-hidden="true">
-  <!-- Glowing Aurora Light Orbs for atmospheric depth -->
+  <!-- Glowing Aurora Ambient Glow Orbs for deep atmospheric illumination -->
+  <div class="aurora-orb orb-emerald"></div>
   <div class="aurora-orb orb-cyan"></div>
   <div class="aurora-orb orb-violet"></div>
-  <div class="aurora-orb orb-mint"></div>
 
-  <!-- Dynamic Fluid Wave Canvas -->
-  <canvas id="aurora-waves-canvas" class="aurora-canvas"></canvas>
+  <!-- Real-time Aurora Borealis Canvas (Curtains of Light & Ray Striations) -->
+  <canvas id="aurora-borealis-canvas" class="aurora-canvas"></canvas>
 </div>
 
 <script>
-  function initAuroraWaves() {
-    const canvas = document.getElementById('aurora-waves-canvas') as HTMLCanvasElement | null;
+  function initAuroraBorealis() {
+    const canvas = document.getElementById('aurora-borealis-canvas') as HTMLCanvasElement | null;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let prefersReducedMotion = mediaQuery.matches;
     mediaQuery.addEventListener('change', (e) => {
@@ -29,6 +28,32 @@
     let width = 0;
     let height = 0;
     let dpr = 1;
+
+    // Starfield for deep polar night sky atmosphere
+    interface Star {
+      x: number;
+      y: number;
+      size: number;
+      alpha: number;
+      speed: number;
+      phase: number;
+    }
+    let stars: Star[] = [];
+
+    function initStars() {
+      stars = [];
+      const count = Math.min(Math.floor((width * height) / 14000), 75);
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height * 0.85,
+          size: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * 0.7 + 0.2,
+          speed: Math.random() * 0.03 + 0.01,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    }
 
     function resize() {
       if (!canvas) return;
@@ -42,14 +67,15 @@
       if (ctx) {
         ctx.scale(dpr, dpr);
       }
+      initStars();
     }
 
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    // Track mouse coordinates for gentle fluid wave reaction
-    let mouseX = width / 2;
-    let mouseY = height / 2;
+    // Smooth mouse coordinates for celestial wind interaction
+    let mouseX = width * 0.5;
+    let mouseY = height * 0.4;
     let targetMouseX = mouseX;
     let targetMouseY = mouseY;
 
@@ -62,77 +88,74 @@
       { passive: true }
     );
 
-    // Multi-layer wave definitions with varying frequencies, speeds, and amplitudes
-    const waves = [
+    // 3 layered celestial Aurora Borealis curtains
+    const auroraCurtains = [
       {
-        baseYRatio: 0.38,
-        amplitude: 36,
-        wavelength: 0.0028,
-        speed: 0.024,
-        harmonicAmp: 16,
-        harmonicWavelength: 0.0055,
+        baseYRatio: 0.35,
+        curtainHeight: 320,
+        wavelength: 0.0018,
+        speed: 0.007,
+        foldFreq: 0.005,
+        foldSpeed: 0.012,
+        baseAmp: 60,
+        rayCount: 90,
         phase: 0,
-        darkStroke: 'rgba(111, 211, 255, 0.45)',
-        darkFillStart: 'rgba(111, 211, 255, 0.14)',
-        darkFillEnd: 'rgba(111, 211, 255, 0.0)',
-        lightStroke: 'rgba(2, 132, 199, 0.35)',
-        lightFillStart: 'rgba(2, 132, 199, 0.08)',
-        lightFillEnd: 'rgba(2, 132, 199, 0.0)',
-        lineWidth: 1.8,
+        darkColors: {
+          base: 'rgba(142, 230, 184, 0.42)',    // Ionized oxygen emerald/mint
+          mid: 'rgba(111, 211, 255, 0.35)',     // Electric cyan
+          top: 'rgba(182, 156, 255, 0.22)',     // Nitrogen purple/violet
+        },
+        lightColors: {
+          base: 'rgba(5, 150, 105, 0.18)',
+          mid: 'rgba(2, 132, 199, 0.14)',
+          top: 'rgba(124, 58, 237, 0.08)',
+        },
       },
       {
-        baseYRatio: 0.55,
-        amplitude: 44,
+        baseYRatio: 0.58,
+        curtainHeight: 380,
         wavelength: 0.0022,
-        speed: -0.018,
-        harmonicAmp: 20,
-        harmonicWavelength: 0.0042,
-        phase: 2.1,
-        darkStroke: 'rgba(182, 156, 255, 0.40)',
-        darkFillStart: 'rgba(182, 156, 255, 0.12)',
-        darkFillEnd: 'rgba(182, 156, 255, 0.0)',
-        lightStroke: 'rgba(124, 58, 237, 0.30)',
-        lightFillStart: 'rgba(124, 58, 237, 0.07)',
-        lightFillEnd: 'rgba(124, 58, 237, 0.0)',
-        lineWidth: 1.6,
+        speed: -0.009,
+        foldFreq: 0.006,
+        foldSpeed: 0.016,
+        baseAmp: 75,
+        rayCount: 110,
+        phase: 2.4,
+        darkColors: {
+          base: 'rgba(111, 211, 255, 0.45)',    // Cyan core fold
+          mid: 'rgba(142, 230, 184, 0.36)',     // Emerald sheen
+          top: 'rgba(182, 156, 255, 0.28)',     // Violet curtain crown
+        },
+        lightColors: {
+          base: 'rgba(2, 132, 199, 0.20)',
+          mid: 'rgba(5, 150, 105, 0.14)',
+          top: 'rgba(124, 58, 237, 0.10)',
+        },
       },
       {
-        baseYRatio: 0.72,
-        amplitude: 48,
-        wavelength: 0.0019,
-        speed: 0.016,
-        harmonicAmp: 22,
-        harmonicWavelength: 0.0035,
-        phase: 4.2,
-        darkStroke: 'rgba(142, 230, 184, 0.35)',
-        darkFillStart: 'rgba(142, 230, 184, 0.10)',
-        darkFillEnd: 'rgba(142, 230, 184, 0.0)',
-        lightStroke: 'rgba(5, 150, 105, 0.25)',
-        lightFillStart: 'rgba(5, 150, 105, 0.06)',
-        lightFillEnd: 'rgba(5, 150, 105, 0.0)',
-        lineWidth: 1.4,
-      },
-      {
-        baseYRatio: 0.88,
-        amplitude: 38,
-        wavelength: 0.0032,
-        speed: -0.022,
-        harmonicAmp: 14,
-        harmonicWavelength: 0.0065,
-        phase: 1.2,
-        darkStroke: 'rgba(111, 211, 255, 0.32)',
-        darkFillStart: 'rgba(182, 156, 255, 0.08)',
-        darkFillEnd: 'rgba(111, 211, 255, 0.0)',
-        lightStroke: 'rgba(2, 132, 199, 0.22)',
-        lightFillStart: 'rgba(124, 58, 237, 0.05)',
-        lightFillEnd: 'rgba(2, 132, 199, 0.0)',
-        lineWidth: 1.2,
+        baseYRatio: 0.78,
+        curtainHeight: 280,
+        wavelength: 0.0015,
+        speed: 0.006,
+        foldFreq: 0.004,
+        foldSpeed: 0.010,
+        baseAmp: 50,
+        rayCount: 80,
+        phase: 4.8,
+        darkColors: {
+          base: 'rgba(182, 156, 255, 0.38)',    // Deep violet bottom
+          mid: 'rgba(111, 211, 255, 0.30)',     // Cyan ribbon
+          top: 'rgba(142, 230, 184, 0.16)',     // Mint whisper
+        },
+        lightColors: {
+          base: 'rgba(124, 58, 237, 0.16)',
+          mid: 'rgba(2, 132, 199, 0.12)',
+          top: 'rgba(5, 150, 105, 0.06)',
+        },
       },
     ];
 
-    let animationFrameId: number;
     let isVisible = true;
-
     document.addEventListener('visibilitychange', () => {
       isVisible = !document.hidden;
       if (isVisible) {
@@ -142,6 +165,7 @@
     });
 
     let lastTime = performance.now();
+    let globalTime = 0;
 
     function render() {
       if (!isVisible) return;
@@ -150,97 +174,119 @@
       const delta = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
 
+      if (!prefersReducedMotion) {
+        globalTime += delta;
+      }
+
       if (!ctx || !canvas) return;
 
       // Smooth cursor interpolation
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
+      mouseX += (targetMouseX - mouseX) * 0.035;
+      mouseY += (targetMouseY - mouseY) * 0.035;
 
       ctx.clearRect(0, 0, width, height);
 
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
-      // Draw each wave
-      for (let i = 0; i < waves.length; i++) {
-        const w = waves[i];
+      // 1. Draw subtle twinkling polar stars in dark mode
+      if (!isLight) {
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+          const twinkle = Math.sin(globalTime * 1.5 + s.phase) * 0.35 + 0.65;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(232, 234, 246, ${s.alpha * twinkle * 0.75})`;
+          ctx.fill();
+        }
+      }
+
+      // 2. Render each Aurora Curtain with vertical light columns & wave folds
+      ctx.globalCompositeOperation = isLight ? 'multiply' : 'screen';
+
+      for (let c = 0; c < auroraCurtains.length; c++) {
+        const curtain = auroraCurtains[c];
 
         if (!prefersReducedMotion) {
-          w.phase += w.speed * delta * 60;
+          curtain.phase += curtain.speed * delta * 60;
         }
 
-        const baseY = height * w.baseYRatio;
-        const strokeColor = isLight ? w.lightStroke : w.darkStroke;
-        const fillStart = isLight ? w.lightFillStart : w.darkFillStart;
-        const fillEnd = isLight ? w.lightFillEnd : w.darkFillEnd;
+        const colors = isLight ? curtain.lightColors : curtain.darkColors;
+        const baseY = height * curtain.baseYRatio;
+        const rays = curtain.rayCount;
+        const stepX = width / rays;
 
-        // Create vertical gradient for filled wave body
-        const grad = ctx.createLinearGradient(0, baseY - w.amplitude, 0, height);
-        grad.addColorStop(0, fillStart);
-        grad.addColorStop(1, fillEnd);
+        // Render each vertical curtain ray
+        for (let r = 0; r <= rays; r++) {
+          const x = r * stepX;
 
-        ctx.beginPath();
-        ctx.moveTo(0, height);
-
-        // Calculate points across screen width with step of 8px for high performance
-        const step = 8;
-        for (let x = 0; x <= width + step; x += step) {
-          // Distance to mouse influences amplitude subtly for interactivity
+          // Influence of mouse proximity
           const distToMouse = Math.abs(x - mouseX);
-          const mouseFactor = Math.max(0, 1 - distToMouse / (width * 0.45));
-          const interactiveAmp = w.amplitude + mouseFactor * 14;
+          const mouseInfl = Math.max(0, 1 - distToMouse / (width * 0.4));
+          const amp = curtain.baseAmp + mouseInfl * 24;
 
-          const y1 = Math.sin(x * w.wavelength + w.phase) * interactiveAmp;
-          const y2 = Math.cos(x * w.harmonicWavelength + w.phase * 0.7) * (w.harmonicAmp + mouseFactor * 6);
-          const y = baseY + y1 + y2;
+          // Undulating spine curve with secondary and tertiary harmonic folds
+          const wave1 = Math.sin(x * curtain.wavelength + curtain.phase) * amp;
+          const wave2 = Math.cos(x * curtain.foldFreq + curtain.phase * 1.4) * (amp * 0.45);
+          const wave3 = Math.sin(x * 0.008 + globalTime * 0.8) * 8; // high frequency shimmer
+          const spineY = baseY + wave1 + wave2 + wave3;
+
+          // Ray vertical reach (folds in the aurora billow higher where the waves crest)
+          const foldIntensity = Math.abs(Math.sin(x * curtain.wavelength * 1.8 + curtain.phase));
+          const rayHeight = curtain.curtainHeight * (0.65 + foldIntensity * 0.55 + mouseInfl * 0.2);
+
+          // Top of ray extends upward into the sky
+          const topY = spineY - rayHeight;
+          const botY = spineY + 30;
+
+          // Vertical gradient for the aurora curtain fold
+          const rayGrad = ctx.createLinearGradient(x, topY, x, botY);
+          rayGrad.addColorStop(0, 'rgba(0,0,0,0)');
+          rayGrad.addColorStop(0.25, colors.top);
+          rayGrad.addColorStop(0.65, colors.mid);
+          rayGrad.addColorStop(0.92, colors.base);
+          rayGrad.addColorStop(1, 'rgba(0,0,0,0)');
+
+          ctx.fillStyle = rayGrad;
+          // Soft overlapping vertical beam strips
+          ctx.fillRect(x - stepX * 0.8, topY, stepX * 1.8, botY - topY);
+        }
+
+        // Add a luminous glowing baseline ribbon through the curtain's crest
+        ctx.beginPath();
+        for (let x = 0; x <= width + 12; x += 12) {
+          const distToMouse = Math.abs(x - mouseX);
+          const mouseInfl = Math.max(0, 1 - distToMouse / (width * 0.4));
+          const amp = curtain.baseAmp + mouseInfl * 24;
+
+          const wave1 = Math.sin(x * curtain.wavelength + curtain.phase) * amp;
+          const wave2 = Math.cos(x * curtain.foldFreq + curtain.phase * 1.4) * (amp * 0.45);
+          const wave3 = Math.sin(x * 0.008 + globalTime * 0.8) * 8;
+          const y = baseY + wave1 + wave2 + wave3;
 
           if (x === 0) {
-            ctx.lineTo(0, y);
+            ctx.moveTo(x, y);
           } else {
             ctx.lineTo(x, y);
           }
         }
-
-        ctx.lineTo(width, height);
-        ctx.closePath();
-        ctx.fillStyle = grad;
-        ctx.fill();
-
-        // Stroke the glowing wave crest line
-        ctx.beginPath();
-        for (let x = 0; x <= width + step; x += step) {
-          const distToMouse = Math.abs(x - mouseX);
-          const mouseFactor = Math.max(0, 1 - distToMouse / (width * 0.45));
-          const interactiveAmp = w.amplitude + mouseFactor * 14;
-
-          const y1 = Math.sin(x * w.wavelength + w.phase) * interactiveAmp;
-          const y2 = Math.cos(x * w.harmonicWavelength + w.phase * 0.7) * (w.harmonicAmp + mouseFactor * 6);
-          const y = baseY + y1 + y2;
-
-          if (x === 0) {
-            ctx.moveTo(0, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
-        }
-
-        ctx.strokeStyle = strokeColor;
-        ctx.lineWidth = w.lineWidth;
+        ctx.strokeStyle = colors.base;
+        ctx.lineWidth = 1.6;
         ctx.stroke();
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      ctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(render);
     }
 
     render();
   }
 
-  // Initialize on page load and on Astro view transitions if used
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAuroraWaves);
+    document.addEventListener('DOMContentLoaded', initAuroraBorealis);
   } else {
-    initAuroraWaves();
+    initAuroraBorealis();
   }
-  document.addEventListener('astro:page-load', initAuroraWaves);
+  document.addEventListener('astro:page-load', initAuroraBorealis);
 </script>
 
 <style>
@@ -253,6 +299,7 @@
     width: 100vw;
     height: 100vh;
     contain: strict;
+    background: radial-gradient(circle at 50% 20%, rgba(20, 26, 56, 0.4) 0%, transparent 80%);
   }
 
   .aurora-canvas {
@@ -264,89 +311,89 @@
     display: block;
   }
 
-  /* Bioluminescent Glow Orbs for background depth */
+  /* Bioluminescent Glow Orbs for ambient atmospheric lighting behind curtains */
   .aurora-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(85px);
-    opacity: 0.32;
+    filter: blur(95px);
+    opacity: 0.35;
     will-change: transform, opacity;
     mix-blend-mode: screen;
   }
 
   [data-theme="light"] .aurora-orb {
     mix-blend-mode: multiply;
-    opacity: 0.16;
-    filter: blur(95px);
+    opacity: 0.18;
+    filter: blur(105px);
+  }
+
+  .orb-emerald {
+    top: 15%;
+    left: 8%;
+    width: 52vw;
+    height: 52vw;
+    max-width: 620px;
+    max-height: 620px;
+    background: radial-gradient(circle, var(--mint) 0%, rgba(142, 230, 184, 0.02) 70%, transparent 100%);
+    animation: drift-orb-emerald 16s ease-in-out infinite alternate;
   }
 
   .orb-cyan {
-    top: 5%;
-    left: 10%;
-    width: 45vw;
-    height: 45vw;
-    max-width: 520px;
-    max-height: 520px;
-    background: radial-gradient(circle, var(--cyan) 0%, rgba(111, 211, 255, 0) 70%);
-    animation: drift-orb-1 14s ease-in-out infinite alternate;
+    top: 40%;
+    right: 6%;
+    width: 56vw;
+    height: 56vw;
+    max-width: 650px;
+    max-height: 650px;
+    background: radial-gradient(circle, var(--cyan) 0%, rgba(111, 211, 255, 0.02) 70%, transparent 100%);
+    animation: drift-orb-cyan 18s ease-in-out infinite alternate;
   }
 
   .orb-violet {
-    top: 35%;
-    right: 8%;
-    width: 50vw;
-    height: 50vw;
-    max-width: 580px;
-    max-height: 580px;
-    background: radial-gradient(circle, var(--violet) 0%, rgba(182, 156, 255, 0) 70%);
-    animation: drift-orb-2 16s ease-in-out infinite alternate;
+    bottom: -10%;
+    left: 30%;
+    width: 48vw;
+    height: 48vw;
+    max-width: 550px;
+    max-height: 550px;
+    background: radial-gradient(circle, var(--violet) 0%, rgba(182, 156, 255, 0.02) 70%, transparent 100%);
+    animation: drift-orb-violet 20s ease-in-out infinite alternate;
   }
 
-  .orb-mint {
-    bottom: -5%;
-    left: 25%;
-    width: 42vw;
-    height: 42vw;
-    max-width: 480px;
-    max-height: 480px;
-    background: radial-gradient(circle, var(--mint) 0%, rgba(142, 230, 184, 0) 70%);
-    animation: drift-orb-3 18s ease-in-out infinite alternate;
-  }
-
-  /* Keyframe Animations for background orbs */
-  @keyframes drift-orb-1 {
+  /* Smooth undulating drift for ambient light orbs */
+  @keyframes drift-orb-emerald {
     0% {
       transform: translate3d(0, 0, 0) scale(1);
     }
     50% {
-      transform: translate3d(50px, 40px, 0) scale(1.12);
+      transform: translate3d(60px, 45px, 0) scale(1.15);
     }
     100% {
-      transform: translate3d(-40px, 60px, 0) scale(0.92);
+      transform: translate3d(-45px, 65px, 0) scale(0.92);
     }
   }
 
-  @keyframes drift-orb-2 {
+  @keyframes drift-orb-cyan {
     0% {
-      transform: translate3d(0, 0, 0) scale(0.95);
+      transform: translate3d(0, 0, 0) scale(0.94);
     }
     50% {
-      transform: translate3d(-60px, -45px, 0) scale(1.10);
+      transform: translate3d(-65px, -50px, 0) scale(1.12);
     }
     100% {
-      transform: translate3d(40px, -30px, 0) scale(1.04);
+      transform: translate3d(45px, -35px, 0) scale(1.05);
     }
   }
 
-  @keyframes drift-orb-3 {
+  @keyframes drift-orb-violet {
     0% {
-      transform: translate3d(0, 0, 0) scale(1.04);
+      transform: translate3d(0, 0, 0) scale(1.05);
     }
     50% {
-      transform: translate3d(55px, -50px, 0) scale(0.92);
+      transform: translate3d(60px, -55px, 0) scale(0.92);
     }
     100% {
-      transform: translate3d(-45px, 35px, 0) scale(1.14);
+      transform: translate3d(-50px, 40px, 0) scale(1.15);
     }
   }
 

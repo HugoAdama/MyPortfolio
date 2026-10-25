@@ -58,16 +58,19 @@
 <style>
   .editor {
     background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 12px;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    box-shadow: inset 0 1px 0 var(--glass-highlight), var(--glass-shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .editor:hover {
-    border-color: rgba(111, 211, 255, 0.4);
-    transform: translateY(-2px);
+    border-color: var(--glass-border-hover);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), var(--glass-shadow-hover);
+    transform: translateY(-3px);
   }
 
   .bar {
