@@ -9,9 +9,6 @@
 
   <!-- Real-time Silky Aurora Borealis Canvas -->
   <canvas id="aurora-borealis-canvas" class="aurora-canvas"></canvas>
-
-  <!-- Atmospheric contrast shield to protect text readability -->
-  <div class="contrast-shield"></div>
 </div>
 
 <script>
@@ -291,7 +288,6 @@
     width: 100vw;
     height: 100vh;
     contain: strict;
-    background: var(--bg);
   }
 
   /* Silky blurred canvas so wave motion is fluid without harsh stripes */
@@ -303,24 +299,12 @@
     pointer-events: none;
     display: block;
     filter: blur(28px);
-    opacity: 0.65;
+    opacity: 0.45;
   }
 
-  [data-theme="light"] .aurora-canvas {
+  :global([data-theme="light"]) .aurora-canvas {
     filter: blur(34px);
-    opacity: 0.35;
-  }
-
-  /* Text protection contrast shield (subtle dark vignette in reading area) */
-  .contrast-shield {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at 50% 30%, rgba(10, 14, 31, 0.45) 0%, rgba(10, 14, 31, 0.85) 100%);
-  }
-
-  [data-theme="light"] .contrast-shield {
-    background: radial-gradient(ellipse at 50% 30%, rgba(244, 247, 252, 0.4) 0%, rgba(244, 247, 252, 0.85) 100%);
+    opacity: 0.16;
   }
 
   /* Soft glowing ambient orbs behind curtains */
@@ -328,14 +312,14 @@
     position: absolute;
     border-radius: 50%;
     filter: blur(100px);
-    opacity: 0.28;
+    opacity: 0.22;
     will-change: transform, opacity;
     mix-blend-mode: screen;
   }
 
-  [data-theme="light"] .aurora-orb {
+  :global([data-theme="light"]) .aurora-orb {
     mix-blend-mode: multiply;
-    opacity: 0.12;
+    opacity: 0.08;
     filter: blur(110px);
   }
 
