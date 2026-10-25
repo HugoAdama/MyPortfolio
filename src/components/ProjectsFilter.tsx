@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
-import type { Project } from '../data/projects';
-import { statusLabels, uiLabels } from '../data/projects';
+import type { Project, ProjectCategory } from '../data/projects';
+import { statusLabels, uiLabels, projectCategories } from '../data/projects';
 import { getAssetPath } from '../utils/paths';
 
 interface ProjectsFilterProps {
@@ -9,7 +9,7 @@ interface ProjectsFilterProps {
 
 export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
   const [lang, setLang] = useState<'es' | 'en'>('es');
-  const [activeFilter, setActiveFilter] = useState('ALL');
+  const [activeCategory, setActiveCategory] = useState<'ALL' | ProjectCategory>('ALL');
   const [currentPage, setCurrentPage] = useState(1);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
@@ -31,14 +31,20 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
     };
   }, []);
 
-  const allTags = useMemo(() => {
-    return Array.from(new Set(projects.flatMap((p) => p.tags)));
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      ALL: projects.length,
+    };
+    for (const p of projects) {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    }
+    return counts;
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'ALL') return projects;
-    return projects.filter((p) => p.tags.includes(activeFilter));
-  }, [projects, activeFilter]);
+    if (activeCategory === 'ALL') return projects;
+    return projects.filter((p) => p.category === activeCategory);
+  }, [projects, activeCategory]);
 
   const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE) || 1;
 
@@ -55,8 +61,8 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
     return filteredProjects.slice(startIndex, endIndex);
   }, [filteredProjects, startIndex, endIndex]);
 
-  const handleFilterSelect = (tag: string) => {
-    setActiveFilter(tag);
+  const handleCategorySelect = (categoryId: 'ALL' | ProjectCategory) => {
+    setActiveCategory(categoryId);
     setCurrentPage(1);
   };
 
@@ -80,25 +86,23 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
       <div
         className="filters"
         role="group"
-        aria-label={lang === 'es' ? 'Filtrar proyectos por tecnología' : 'Filter projects by technology'}
+        aria-label={labels.filterAria}
       >
-        <button
-          type="button"
-          aria-pressed={activeFilter === 'ALL'}
-          onClick={() => handleFilterSelect('ALL')}
-        >
-          {labels.filterAll}
-        </button>
-        {allTags.map((tag) => {
-          const isSelected = tag === activeFilter;
+        {projectCategories.map((cat) => {
+          const isSelected = cat.id === activeCategory;
+          const label = lang === 'en' ? cat.label_en : cat.label_es;
+          const count = categoryCounts[cat.id] || 0;
+
           return (
             <button
-              key={tag}
+              key={cat.id}
               type="button"
+              className={`filter-btn ${isSelected ? 'active' : ''}`}
               aria-pressed={isSelected}
-              onClick={() => handleFilterSelect(tag)}
+              onClick={() => handleCategorySelect(cat.id)}
             >
-              {tag}
+              <span>{label}</span>
+              <span className="filter-count" aria-hidden="true">{count}</span>
             </button>
           );
         })}
