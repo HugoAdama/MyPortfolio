@@ -87,7 +87,7 @@ import { getAssetPath } from '../utils/paths';
     margin-bottom: 18px;
   }
 
-  [data-theme="light"] .status-badge {
+  :global([data-theme="light"]) .status-badge {
     background: rgba(5, 150, 105, 0.08);
     border-color: rgba(5, 150, 105, 0.25);
     color: #059669;
@@ -153,7 +153,7 @@ import { getAssetPath } from '../utils/paths';
     transform: translateY(0) scale(0.96);
   }
 
-  /* High contrast primary button without eye-strain glare */
+  /* High contrast primary button */
   .primary-btn {
     background: var(--cyan);
     color: #0F172A;
@@ -162,7 +162,7 @@ import { getAssetPath } from '../utils/paths';
     box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.45);
   }
 
-  [data-theme="light"] .primary-btn {
+  :global([data-theme="light"]) .primary-btn {
     background: var(--cyan);
     color: #FFFFFF;
     box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
@@ -177,19 +177,19 @@ import { getAssetPath } from '../utils/paths';
 
   /* Download CV button */
   .cv-btn {
-    background: var(--glass-surface), rgba(22, 28, 54, 0.88);
-    color: #E2E8F0;
+    background: var(--glass-surface), var(--panel);
+    color: var(--text);
     border: 1.5px solid rgba(182, 156, 255, 0.55);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  [data-theme="light"] .cv-btn {
+  :global([data-theme="light"]) .cv-btn {
     background: var(--glass-surface), #FFFFFF;
-    border-color: rgba(124, 58, 237, 0.4);
+    border-color: rgba(124, 58, 237, 0.45);
     color: #7C3AED;
-    box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 8px rgba(124, 58, 237, 0.08);
+    box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 8px rgba(124, 58, 237, 0.12);
   }
 
   .cv-btn:hover {
@@ -200,16 +200,17 @@ import { getAssetPath } from '../utils/paths';
     box-shadow: 0 8px 22px -4px rgba(182, 156, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
+  /* Alt contact button */
   .alt-btn {
     background: var(--glass-surface), var(--panel);
-    color: #FFFFFF;
+    color: var(--text);
     border: 1.5px solid var(--line);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     box-shadow: var(--glass-bevel), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  [data-theme="light"] .alt-btn {
+  :global([data-theme="light"]) .alt-btn {
     background: var(--glass-surface), #FFFFFF;
     color: #0F172A;
     border-color: var(--line);
@@ -223,9 +224,10 @@ import { getAssetPath } from '../utils/paths';
     box-shadow: var(--glass-bevel-hover), 0 6px 16px -2px rgba(2, 132, 199, 0.25);
   }
 
+  /* Icon button */
   .icon-btn {
     background: var(--glass-surface), var(--panel);
-    color: #E2E8F0;
+    color: var(--text);
     border: 1.5px solid var(--line);
     padding: 11px 16px;
     backdrop-filter: var(--glass-blur);
@@ -233,11 +235,18 @@ import { getAssetPath } from '../utils/paths';
     box-shadow: var(--glass-bevel), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  [data-theme="light"] .icon-btn {
+  :global([data-theme="light"]) .icon-btn {
     background: var(--glass-surface), #FFFFFF;
-    color: #475569;
+    color: #0F172A;
     border-color: var(--line);
     box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .icon-btn:hover {
+    border-color: var(--violet);
+    color: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -2px rgba(182, 156, 255, 0.25);
   }
 
   .icon-btn:hover {

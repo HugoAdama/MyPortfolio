@@ -68,7 +68,7 @@
     will-change: transform;
   }
 
-  [data-theme="light"] .editor {
+  :global([data-theme="light"]) .editor {
     background: var(--glass-surface), #FFFFFF;
     box-shadow: var(--glass-bevel), var(--glass-shadow);
   }
@@ -79,7 +79,7 @@
     transform: translateY(-4px);
   }
 
-  [data-theme="light"] .editor:hover {
+  :global([data-theme="light"]) .editor:hover {
     box-shadow: var(--glass-bevel-hover), var(--glass-shadow-hover);
   }
 

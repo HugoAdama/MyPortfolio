@@ -13,11 +13,14 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 ## Key Features
 
 - **Astro Islands Architecture:** Static-first approach delivering zero unnecessary JavaScript to the client for informational sections (Hero, About, Tech Stack, Footer).
-- **Interactive React Island:** A reactive project filtering system with real-time tag queries and smooth DOM transitions.
-- **Dark and Light Mode:** System-aware theme switcher with `localStorage` persistence and anti-FOUC script in the document head.
+- **Interactive React Island:** A reactive project filtering and pagination system (6 projects per page) with solution-oriented categorization (`Web Apps & Tools`, `Landing Pages & B2B`, `Interactive Experiences`) and smooth section alignment.
+- **Liquid Glassmorphism Design System:** Advanced optical glass styling featuring directional light refraction gradients (`--glass-surface`), top specular bevels (`--glass-bevel`), and multi-elevation atmospheric shadows (`--glass-shadow`).
+- **Dynamic Aurora Borealis Background:** Real-time GPU/Canvas aurora curtain engine with cached trigonometric coordinates (50% reduction in calculations per frame), DPR clamping (1.75 max), and silky ambient lighting orbs.
+- **Fluid Spring Physics:** Tactile `:active` click interactions and native-feeling spring easing curves (`cubic-bezier(0.16, 1, 0.3, 1)`) across all cards, pills, and buttons.
+- **Dark and Light Mode:** System-aware theme switcher with `localStorage` persistence and anti-FOUC script in the document head, fully tested for WCAG AAA contrast compliance.
 - **Bilingual Internationalization (ES / EN):** Instant in-place language toggle between Spanish and English without full page reloads.
 - **Custom Vector Iconography:** Accessible, lightweight inline SVG icons styled consistently with the application design tokens.
-- **Accessible Interactions:** Built with keyboard focus states, semantic HTML5 landmarks, and WCAG AA contrast compliance.
+- **Accessible Interactions:** Built with keyboard focus states, semantic HTML5 landmarks, zero horizontal overflow, and strict accessibility.
 - **Responsive Layout:** Tailored grid layouts for mobile, tablet, and desktop screens.
 
 ---
@@ -29,7 +32,7 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 | **Framework** | Astro 7 | Static site generation and islands orchestration |
 | **UI Library** | React 19 | Interactive client components |
 | **Language** | TypeScript | Type safety for project definitions and state logic |
-| **Styling** | Vanilla CSS (Modular) | Custom design system tokens, CSS variables, and layout modules |
+| **Styling** | Vanilla CSS (Modular) | Custom design system tokens, CSS variables, liquid glass, and layout modules |
 | **Fonts** | Inter & JetBrains Mono | Primary typography and monospace code presentation |
 | **Icons** | Custom Inline SVGs | Scalable and theme-aware vector icons |
 
@@ -40,15 +43,15 @@ This repository contains the source code for the personal portfolio of **Hugo Ad
 1. **Git Command Web:** Interactive, visual mental-model guide to Git featuring a 4-stage change lifecycle pipeline, live terminal simulator, 3-way merge conflict resolver, Git Bisect simulator, and interactive rebase playground. Built with Astro and TypeScript.
 2. **Once Upon a Timeline:** Interactive digital archive and fan experience celebrating TWICE. Features an interactive discography timeline, audio player, 3D photocard customizer with Canvas export, virtual Candybong lightstick simulator, and multi-language support (ES/EN/KO/JA).
 3. **CSS Motion Lab:** Interactive laboratory and curated catalog of 180 production-ready pure CSS animations & UI patterns with coordinated HTML and CSS.
-4. **Wedding_Invitation:** Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS, featuring real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.
-5. **Wedding_Web:** Editorial digital wedding invitation built with Astro 7, TypeScript, and modern CSS, featuring a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.
+4. **Wedding Invitation:** Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS, featuring real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.
+5. **Wedding Web:** Editorial digital wedding invitation built with Astro 7, TypeScript, and modern CSS, featuring a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.
 6. **Nova Smile Lima:** Boutique dental clinic landing page demo built with Astro 7, TypeScript, and modern CSS. Fast, accessible, and fully responsive.
 7. **Lavanda:** Modern, ultra-fast landing page for an eco-friendly on-demand laundry and dry-cleaning delivery service, built with Astro, TypeScript, and zero-JS modern CSS.
 8. **Spartan Gym:** High-conversion fitness landing page built with Astro and TypeScript, featuring a zero-friction WhatsApp lead conversion funnel and extreme Core Web Vitals optimization.
 9. **BeatNest:** In-browser private audio player with 5-band equalizer, real-time Canvas visualizer, and zero-cloud dependency.
 10. **Nimbus:** High-precision real-time weather web application built with clean architecture (SoC) and interactive 24-hour SVG temperature chart.
 11. **MiDespensa:** Smart recipe manager and offline-first Progressive Web App (PWA) with IndexedDB persistence.
-12. **Kanban_Tableu:** Accessible Kanban board (WCAG 2.1 AA) with full keyboard navigation and native Drag and Drop.
+12. **Kanban Tableau:** Accessible Kanban board (WCAG 2.1 AA) with full keyboard navigation, native Drag and Drop, and Undo/Redo history.
 
 ---
 
@@ -66,23 +69,26 @@ portfolio/
 ├── src/
 │   ├── components/
 │   │   ├── About.astro        # Biography, core pillars, and categorized tech stack
+│   │   ├── AuroraWaves.astro  # Optimized real-time canvas Aurora Borealis background
 │   │   ├── CodeWindow.astro   # Interactive code snippet card with typing animation
 │   │   ├── Footer.astro       # Contact call-to-action, copy email button, and navigation
 │   │   ├── Header.astro       # Sticky navigation bar with theme and language toggles
 │   │   ├── Hero.astro         # Introduction, availability status, and primary CTAs
-│   │   └── ProjectsFilter.tsx # React client island for tag-based filtering
+│   │   └── ProjectsFilter.tsx # React client island for category filtering & pagination
 │   ├── data/
-│   │   └── projects.ts        # Typed project datasets with bilingual descriptions
+│   │   └── projects.ts        # Typed project datasets with bilingual descriptions & categories
 │   ├── layouts/
 │   │   └── Layout.astro       # HTML document skeleton, SEO metadata, and anti-FOUC script
 │   ├── styles/
-│   │   ├── tokens.css         # Design tokens, color palettes (dark/light), and i18n rules
-│   │   ├── base.css           # Resets, body styles, typography, and focus states
+│   │   ├── tokens.css         # Design tokens, liquid glass gradients, and color palettes
+│   │   ├── base.css           # Resets, body styles, typography, and motion rules
 │   │   ├── layout.css         # Page containers (.wrap), section titles (h2), and rhythm
 │   │   ├── header.css         # Navigation bar and header control buttons
-│   │   ├── filters.css        # Interactive technology pill buttons
-│   │   ├── cards.css          # Project grid 2x2 layout, card architecture, and actions
+│   │   ├── filters.css        # Category filter pills with dynamic count badges
+│   │   ├── cards.css          # Project grid 2x2 layout, liquid glass cards, and pagination
 │   │   └── global.css         # Master bundle importing all CSS modules
+│   ├── utils/
+│   │   └── paths.ts           # Base path resolver for assets and internal links
 │   └── pages/
 │       └── index.astro        # Root page composing layout and components
 ├── astro.config.mjs
