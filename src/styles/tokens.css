@@ -1,14 +1,24 @@
 :root {
   --bg: #0A0E1F;
   --bg2: rgba(16, 22, 44, 0.85);
-  --panel: rgba(18, 24, 48, 0.88);
-  --panel-hover: rgba(26, 34, 66, 0.96);
+  --panel: rgba(18, 24, 48, 0.86);
+  --panel-hover: rgba(26, 34, 66, 0.94);
+  
+  /* Liquid Glass System - Dark Theme */
+  --glass-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0) 100%);
+  --glass-surface-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(255, 255, 255, 0.01) 100%);
   --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-border-hover: rgba(111, 211, 255, 0.55);
-  --glass-highlight: rgba(255, 255, 255, 0.20);
-  --glass-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.55);
-  --glass-shadow-hover: 0 20px 42px -6px rgba(0, 0, 0, 0.7), 0 0 24px -4px rgba(111, 211, 255, 0.25);
-  --glass-blur: blur(20px) saturate(160%);
+  --glass-border-hover: rgba(111, 211, 255, 0.6);
+  --glass-bevel: inset 0 1px 1px 0 rgba(255, 255, 255, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --glass-bevel-hover: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.36), inset 0 0 0 1px rgba(111, 211, 255, 0.25);
+  --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 16px 36px -4px rgba(0, 0, 0, 0.55);
+  --glass-shadow-hover: 0 8px 16px -2px rgba(0, 0, 0, 0.4), 0 24px 48px -6px rgba(0, 0, 0, 0.7), 0 0 28px -4px rgba(111, 211, 255, 0.28);
+  --glass-blur: blur(24px) saturate(180%);
+  
+  /* Physics Easing */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  
   --line: rgba(80, 95, 155, 0.45);
   --text: #FFFFFF;
   --muted: #CBD5E1;
@@ -21,14 +31,20 @@
 [data-theme="light"] {
   --bg: #F8FAFC;
   --bg2: #EEF2F6;
-  --panel: rgba(255, 255, 255, 0.94);
+  --panel: rgba(255, 255, 255, 0.90);
   --panel-hover: #FFFFFF;
+  
+  /* Liquid Glass System - Light Theme */
+  --glass-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.65) 55%, rgba(255, 255, 255, 0.4) 100%);
+  --glass-surface-hover: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 60%, rgba(255, 255, 255, 0.6) 100%);
   --glass-border: #E2E8F0;
-  --glass-border-hover: rgba(2, 132, 199, 0.5);
-  --glass-highlight: rgba(255, 255, 255, 0.95);
-  --glass-shadow: 0 12px 32px -6px rgba(15, 23, 42, 0.08);
-  --glass-shadow-hover: 0 20px 36px -4px rgba(15, 23, 42, 0.14), 0 0 20px -2px rgba(2, 132, 199, 0.15);
-  --glass-blur: blur(20px) saturate(140%);
+  --glass-border-hover: rgba(2, 132, 199, 0.55);
+  --glass-bevel: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+  --glass-bevel-hover: inset 0 1px 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(2, 132, 199, 0.25);
+  --glass-shadow: 0 4px 8px -2px rgba(15, 23, 42, 0.04), 0 16px 32px -4px rgba(15, 23, 42, 0.08);
+  --glass-shadow-hover: 0 8px 16px -3px rgba(15, 23, 42, 0.07), 0 24px 40px -4px rgba(15, 23, 42, 0.12), 0 0 24px -2px rgba(2, 132, 199, 0.2);
+  --glass-blur: blur(24px) saturate(160%);
+  
   --line: #E2E8F0;
   --text: #0F172A;
   --muted: #334155;

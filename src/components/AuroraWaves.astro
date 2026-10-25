@@ -54,7 +54,7 @@
 
     function resize() {
       if (!canvas) return;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.75);
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width * dpr;
@@ -194,6 +194,9 @@
 
       ctx.globalCompositeOperation = isLight ? 'multiply' : 'screen';
 
+      const wavePointsX: number[] = [];
+      const wavePointsY: number[] = [];
+
       // 2. Render each silky undulating aurora curtain
       for (let c = 0; c < curtains.length; c++) {
         const curtain = curtains[c];
@@ -204,9 +207,10 @@
 
         const colors = isLight ? curtain.lightColors : curtain.darkColors;
         const baseY = height * curtain.baseYRatio;
-        const step = 14;
+        const step = width < 768 ? 16 : 14;
+        let count = 0;
 
-        // Draw the filled flowing wave body with vertical celestial gradient
+        // 1. Calculate wave points once and construct gradient fill path
         ctx.beginPath();
         ctx.moveTo(0, height);
 
@@ -220,11 +224,11 @@
           const y3 = Math.sin(x * 0.007 + globalTime * 0.7) * 7;
           const spineY = baseY + y1 + y2 + y3;
 
-          if (x === 0) {
-            ctx.lineTo(0, spineY);
-          } else {
-            ctx.lineTo(x, spineY);
-          }
+          wavePointsX[count] = x;
+          wavePointsY[count] = spineY;
+          count++;
+
+          ctx.lineTo(x, spineY);
         }
 
         ctx.lineTo(width, height);
@@ -240,27 +244,17 @@
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Stroke the luminous crest line
-        ctx.beginPath();
-        for (let x = 0; x <= width + step; x += step) {
-          const distToMouse = Math.abs(x - mouseX);
-          const mouseInfl = Math.max(0, 1 - distToMouse / (width * 0.45));
-          const amp = curtain.baseAmp + mouseInfl * 20;
-
-          const y1 = Math.sin(x * curtain.wavelength + curtain.phase) * amp;
-          const y2 = Math.cos(x * curtain.foldFreq + curtain.phase * 1.3) * (amp * 0.45);
-          const y3 = Math.sin(x * 0.007 + globalTime * 0.7) * 7;
-          const spineY = baseY + y1 + y2 + y3;
-
-          if (x === 0) {
-            ctx.moveTo(x, spineY);
-          } else {
-            ctx.lineTo(x, spineY);
+        // 2. Stroke luminous crest line using cached points (zero redundant Math calls)
+        if (count > 0) {
+          ctx.beginPath();
+          ctx.moveTo(wavePointsX[0], wavePointsY[0]);
+          for (let i = 1; i < count; i++) {
+            ctx.lineTo(wavePointsX[i], wavePointsY[i]);
           }
+          ctx.strokeStyle = colors.base;
+          ctx.lineWidth = 1.8;
+          ctx.stroke();
         }
-        ctx.strokeStyle = colors.base;
-        ctx.lineWidth = 1.8;
-        ctx.stroke();
       }
 
       ctx.globalCompositeOperation = 'source-over';

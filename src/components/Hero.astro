@@ -141,11 +141,16 @@ import { getAssetPath } from '../utils/paths';
     align-items: center;
     gap: 8px;
     padding: 11px 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
-    transition: all 0.18s ease;
+    transition: transform 0.22s var(--ease-spring), background 0.2s ease, border-color 0.2s ease, box-shadow 0.22s var(--ease-spring), color 0.18s ease;
+    will-change: transform;
+  }
+
+  .btn:active {
+    transform: translateY(0) scale(0.96);
   }
 
   /* High contrast primary button without eye-strain glare */
@@ -154,33 +159,37 @@ import { getAssetPath } from '../utils/paths';
     color: #0F172A;
     font-weight: 700;
     border: 1px solid var(--cyan);
+    box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.45);
   }
 
   [data-theme="light"] .primary-btn {
     background: var(--cyan);
     color: #FFFFFF;
+    box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   }
 
   .primary-btn:hover {
     background: #38BDF8;
     border-color: #38BDF8;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px -4px rgba(2, 132, 199, 0.4);
+    box-shadow: 0 8px 22px -4px rgba(2, 132, 199, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
   /* Download CV button */
   .cv-btn {
-    background: rgba(22, 28, 54, 0.92);
+    background: var(--glass-surface), rgba(22, 28, 54, 0.88);
     color: #E2E8F0;
     border: 1.5px solid rgba(182, 156, 255, 0.55);
-    backdrop-filter: blur(12px);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   [data-theme="light"] .cv-btn {
-    background: #FFFFFF;
+    background: var(--glass-surface), #FFFFFF;
     border-color: rgba(124, 58, 237, 0.4);
     color: #7C3AED;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+    box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 8px rgba(124, 58, 237, 0.08);
   }
 
   .cv-btn:hover {
@@ -188,48 +197,54 @@ import { getAssetPath } from '../utils/paths';
     color: #FFFFFF;
     border-color: var(--violet);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px -4px rgba(182, 156, 255, 0.45);
+    box-shadow: 0 8px 22px -4px rgba(182, 156, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .alt-btn {
-    background: rgba(22, 28, 54, 0.92);
+    background: var(--glass-surface), var(--panel);
     color: #FFFFFF;
     border: 1.5px solid var(--line);
-    backdrop-filter: blur(12px);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-bevel), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   [data-theme="light"] .alt-btn {
-    background: #FFFFFF;
+    background: var(--glass-surface), #FFFFFF;
     color: #0F172A;
     border-color: var(--line);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 6px rgba(0, 0, 0, 0.04);
   }
 
   .alt-btn:hover {
     border-color: var(--cyan);
     color: var(--cyan);
     transform: translateY(-2px);
+    box-shadow: var(--glass-bevel-hover), 0 6px 16px -2px rgba(2, 132, 199, 0.25);
   }
 
   .icon-btn {
-    background: rgba(22, 28, 54, 0.92);
+    background: var(--glass-surface), var(--panel);
     color: #E2E8F0;
     border: 1.5px solid var(--line);
     padding: 11px 16px;
-    backdrop-filter: blur(12px);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-bevel), 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   [data-theme="light"] .icon-btn {
-    background: #FFFFFF;
+    background: var(--glass-surface), #FFFFFF;
     color: #475569;
     border-color: var(--line);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 6px rgba(0, 0, 0, 0.04);
   }
 
   .icon-btn:hover {
     border-color: var(--violet);
     color: var(--text);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px -2px rgba(182, 156, 255, 0.25);
   }
 
   .btn-icon {
