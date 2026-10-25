@@ -70,7 +70,7 @@ export const uiLabels = {
 export const projects: Project[] = [
   {
     title: 'Git Command Web',
-    desc_es: 'Guía interactiva y visual del modelo mental de Git. Incluye pipeline de transporte de cambios en 4 etapas, simulador de terminal en vivo, resolvedor de conflictos 3-way merge, simulador de Git Bisect, playground de rebase interactivo y generadores de comandos.',
+    desc_es: 'Guía interactiva y visual del modelo mental de Git. Incluye pipeline de transporte de cambios en 4 etapas, simulador de terminal en vivo, resolución visual de conflictos 3-way merge, simulador de Git Bisect, playground de rebase interactivo y generadores de comandos.',
     desc_en: 'Interactive, visual mental-model guide to Git. Features a 4-stage change lifecycle pipeline, live terminal simulator, 3-way merge conflict resolver, Git Bisect simulator, interactive rebase playground, and command builders.',
     tags: ['Astro', 'TypeScript', 'UI/UX'],
     status: 'terminado',
@@ -102,8 +102,8 @@ export const projects: Project[] = [
     img: '/capturas/css-motion-lab.png',
   },
   {
-    title: 'Wedding_Invitation',
-    desc_es: 'Invitación de boda interactiva con temática celestial bajo las estrellas, construida con Astro 7, TypeScript y CSS moderno. Cuenta con cuenta regresiva en tiempo real, sintetizador ambiental con Web Audio API, efectos de partículas 2D en Canvas e integración de confirmación RSVP.',
+    title: 'Wedding Invitation',
+    desc_es: 'Invitación de boda interactiva con temática celestial bajo las estrellas, construida con Astro 7, TypeScript y CSS moderno. Incluye cuenta regresiva en tiempo real, sintetizador ambiental con Web Audio API, efectos de partículas 2D en Canvas e integración de confirmación RSVP.',
     desc_en: 'Celestial-themed interactive wedding invitation web app built with Astro 7, TypeScript, and modern CSS. Features real-time countdown, Web Audio ambient synthesis, 2D canvas particle effects, and RSVP integration.',
     tags: ['Astro', 'TypeScript', 'Canvas'],
     status: 'terminado',
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     img: '/capturas/wedding-invitation.png',
   },
   {
-    title: 'Wedding_Web',
+    title: 'Wedding Web',
     desc_es: 'Invitación de boda digital editorial construida con Astro 7, TypeScript y CSS moderno. Incluye embudo RSVP a WhatsApp sin backend, sintetizador ambiental con Web Audio API en tiempo real y selector interactivo de paletas en vivo.',
     desc_en: 'Editorial digital wedding invitation built with Astro 7, TypeScript & modern CSS. Features a zero-backend WhatsApp RSVP funnel, real-time Web Audio API ambient synth, and interactive live theme switcher.',
     tags: ['Astro', 'TypeScript', 'Web Audio'],
@@ -126,7 +126,7 @@ export const projects: Project[] = [
   {
     title: 'Nova Smile Lima',
     desc_es: 'Landing page moderna para clínica dental boutique construida con Astro 7, TypeScript y CSS moderno. Incluye diagnóstico digital 3D, experiencia serena y diseño accesible de alta conversión totalmente responsive.',
-    desc_en: 'Boutique dental clinic landing page demo built with Astro 7, TypeScript, and modern CSS. Fast, accessible, and fully responsive.',
+    desc_en: 'Modern boutique dental clinic landing page built with Astro 7, TypeScript, and modern CSS. Features interactive 3D digital smile preview, accessible high-conversion appointment funnel, and full responsiveness.',
     tags: ['Astro', 'TypeScript', 'UI/UX'],
     status: 'terminado',
     category: 'landing-pages',
@@ -147,8 +147,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Spartan Gym',
-    desc_es: 'Landing page de alta conversión para centro fitness construida con Astro y TypeScript. Incluye embudo a WhatsApp sin fricción, modal nativo <dialog>, pase VIP digital y optimización Core Web Vitals.',
-    desc_en: 'High-conversion fitness landing page built with Astro and TypeScript. Features a zero-friction WhatsApp conversion funnel, native <dialog> modal, digital VIP pass, and Core Web Vitals optimization.',
+    desc_es: 'Landing page de alta conversión para centro fitness construida con Astro y TypeScript. Incluye embudo a WhatsApp sin fricción, modal accesible nativo (<dialog>), pase VIP digital y optimización Core Web Vitals.',
+    desc_en: 'High-conversion fitness landing page built with Astro and TypeScript. Features a zero-friction WhatsApp conversion funnel, native accessible <dialog> modal, digital VIP pass, and Core Web Vitals optimization.',
     tags: ['Astro', 'TypeScript', 'UI/UX'],
     status: 'terminado',
     category: 'landing-pages',
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     img: '/capturas/midespensa.png',
   },
   {
-    title: 'Kanban_Tableu',
+    title: 'Kanban Tableau',
     desc_es: 'Tablero Kanban enfocado en rendimiento y accesibilidad estricta (WCAG 2.1 AA). Soporta navegación integral por teclado, Drag & Drop nativo, pila Undo/Redo y persistencia local.',
     desc_en: 'High-performance Kanban board focused on strict accessibility (WCAG 2.1 AA) with full keyboard navigation, native Drag & Drop, Undo/Redo stack, and local persistence.',
     tags: ['JavaScript', 'Accesibilidad', 'Drag & Drop'],
