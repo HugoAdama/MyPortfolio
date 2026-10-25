@@ -29,11 +29,23 @@ export const uiLabels = {
     filterAll: 'Todos',
     demo: 'Demo en vivo',
     code: 'Código',
+    prevPage: 'Anterior',
+    nextPage: 'Siguiente',
+    page: 'Página',
+    showing: 'Mostrando',
+    of: 'de',
+    projectsCount: 'proyectos',
   },
   en: {
     filterAll: 'All',
     demo: 'Live Demo',
     code: 'Code',
+    prevPage: 'Previous',
+    nextPage: 'Next',
+    page: 'Page',
+    showing: 'Showing',
+    of: 'of',
+    projectsCount: 'projects',
   },
 };
 

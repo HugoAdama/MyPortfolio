@@ -230,3 +230,113 @@
     height: 170px;
   }
 }
+
+/* Pagination Component */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination-info {
+  font: 0.85rem 'JetBrains Mono', monospace;
+  color: var(--muted);
+}
+
+.pagination-num {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 38px;
+  border-radius: 8px;
+  font: 600 0.82rem 'JetBrains Mono', monospace;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.pagination-nav-btn {
+  padding: 0 14px;
+}
+
+.pagination-page-btn {
+  min-width: 38px;
+  padding: 0 8px;
+}
+
+[data-theme="light"] .pagination-btn {
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: var(--cyan);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.pagination-page-btn.active {
+  background: var(--cyan);
+  color: #0F172A;
+  border-color: var(--cyan);
+  font-weight: 700;
+  box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.35);
+}
+
+[data-theme="light"] .pagination-page-btn.active {
+  color: #FFFFFF;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: var(--line);
+}
+
+.pagination-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .pagination {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .pagination-controls {
+    justify-content: center;
+    width: 100%;
+  }
+}

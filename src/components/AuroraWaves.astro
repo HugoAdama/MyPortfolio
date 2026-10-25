@@ -1,0 +1,203 @@
+---
+// Aurora Glow Waves background component
+---
+<div class="aurora-bg" aria-hidden="true">
+  <!-- Glowing Aurora Light Orbs -->
+  <div class="aurora-orb orb-cyan"></div>
+  <div class="aurora-orb orb-violet"></div>
+  <div class="aurora-orb orb-mint"></div>
+
+  <!-- Undulating Wave Ribbon 1 -->
+  <svg
+    class="aurora-wave wave-primary"
+    viewBox="0 0 1440 480"
+    preserveAspectRatio="none"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="aurora-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.32" />
+        <stop offset="50%" stop-color="var(--violet)" stop-opacity="0.24" />
+        <stop offset="100%" stop-color="var(--mint)" stop-opacity="0.18" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M0,192 C240,280 480,96 720,180 C960,264 1200,120 1440,192 L1440,480 L0,480 Z"
+      fill="url(#aurora-grad-1)"
+    />
+  </svg>
+
+  <!-- Undulating Wave Ribbon 2 (Counter-phase) -->
+  <svg
+    class="aurora-wave wave-secondary"
+    viewBox="0 0 1440 480"
+    preserveAspectRatio="none"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="aurora-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="var(--violet)" stop-opacity="0.28" />
+        <stop offset="60%" stop-color="var(--cyan)" stop-opacity="0.20" />
+        <stop offset="100%" stop-color="var(--panel)" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M0,240 C320,140 640,320 960,210 C1200,130 1360,250 1440,220 L1440,480 L0,480 Z"
+      fill="url(#aurora-grad-2)"
+    />
+  </svg>
+</div>
+
+<style>
+  .aurora-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    contain: strict;
+  }
+
+  /* Bioluminescent Glow Orbs */
+  .aurora-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(75px);
+    opacity: 0.28;
+    will-change: transform, opacity;
+    mix-blend-mode: screen;
+  }
+
+  [data-theme="light"] .aurora-orb {
+    mix-blend-mode: multiply;
+    opacity: 0.16;
+    filter: blur(90px);
+  }
+
+  .orb-cyan {
+    top: 5%;
+    left: 8%;
+    width: 48vw;
+    height: 48vw;
+    max-width: 550px;
+    max-height: 550px;
+    background: radial-gradient(circle, var(--cyan) 0%, rgba(111, 211, 255, 0) 70%);
+    animation: drift-orb-1 18s ease-in-out infinite alternate;
+  }
+
+  .orb-violet {
+    top: 35%;
+    right: 5%;
+    width: 52vw;
+    height: 52vw;
+    max-width: 600px;
+    max-height: 600px;
+    background: radial-gradient(circle, var(--violet) 0%, rgba(182, 156, 255, 0) 70%);
+    animation: drift-orb-2 22s ease-in-out infinite alternate;
+  }
+
+  .orb-mint {
+    bottom: -10%;
+    left: 20%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: radial-gradient(circle, var(--mint) 0%, rgba(142, 230, 184, 0) 70%);
+    animation: drift-orb-3 26s ease-in-out infinite alternate;
+  }
+
+  /* Ambient Wave Ribbons */
+  .aurora-wave {
+    position: absolute;
+    left: -5%;
+    width: 110%;
+    filter: blur(55px);
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  .wave-primary {
+    top: 15%;
+    height: 60vh;
+    animation: wave-float-1 20s ease-in-out infinite alternate;
+  }
+
+  .wave-secondary {
+    top: 40%;
+    height: 65vh;
+    animation: wave-float-2 25s ease-in-out infinite alternate;
+  }
+
+  /* Keyframe Animations */
+  @keyframes drift-orb-1 {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(40px, 30px, 0) scale(1.08);
+    }
+    100% {
+      transform: translate3d(-30px, 50px, 0) scale(0.94);
+    }
+  }
+
+  @keyframes drift-orb-2 {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.96);
+    }
+    50% {
+      transform: translate3d(-50px, -35px, 0) scale(1.06);
+    }
+    100% {
+      transform: translate3d(30px, -20px, 0) scale(1.02);
+    }
+  }
+
+  @keyframes drift-orb-3 {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1.02);
+    }
+    50% {
+      transform: translate3d(45px, -40px, 0) scale(0.95);
+    }
+    100% {
+      transform: translate3d(-40px, 25px, 0) scale(1.1);
+    }
+  }
+
+  @keyframes wave-float-1 {
+    0% {
+      transform: translate3d(-2%, 0, 0) scaleY(1) rotate(-1deg);
+    }
+    50% {
+      transform: translate3d(2%, -18px, 0) scaleY(1.06) rotate(0.5deg);
+    }
+    100% {
+      transform: translate3d(3%, 12px, 0) scaleY(0.94) rotate(1deg);
+    }
+  }
+
+  @keyframes wave-float-2 {
+    0% {
+      transform: translate3d(2%, 0, 0) scaleY(0.95) rotate(1deg);
+    }
+    50% {
+      transform: translate3d(-3%, 16px, 0) scaleY(1.05) rotate(-0.5deg);
+    }
+    100% {
+      transform: translate3d(-1%, -14px, 0) scaleY(1) rotate(-1deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-orb,
+    .aurora-wave {
+      animation: none !important;
+    }
+  }
+</style>

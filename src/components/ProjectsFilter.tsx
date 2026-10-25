@@ -10,7 +10,10 @@ interface ProjectsFilterProps {
 export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
   const [lang, setLang] = useState<'es' | 'en'>('es');
   const [activeFilter, setActiveFilter] = useState('ALL');
+  const [currentPage, setCurrentPage] = useState(1);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const ITEMS_PER_PAGE = 6;
 
   useEffect(() => {
     // Read initial language from data-lang or default to 'es'
@@ -37,6 +40,39 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
     return projects.filter((p) => p.tags.includes(activeFilter));
   }, [projects, activeFilter]);
 
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE) || 1;
+
+  // Keep currentPage within bounds when filtered results change
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [currentPage, totalPages]);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredProjects.length);
+  const paginatedProjects = useMemo(() => {
+    return filteredProjects.slice(startIndex, endIndex);
+  }, [filteredProjects, startIndex, endIndex]);
+
+  const handleFilterSelect = (tag: string) => {
+    setActiveFilter(tag);
+    setCurrentPage(1);
+  };
+
+  const goToPage = (pageNumber: number) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    setCurrentPage(pageNumber);
+
+    const projectsSection = document.getElementById('proyectos');
+    if (projectsSection) {
+      const rect = projectsSection.getBoundingClientRect();
+      if (rect.top < 60) {
+        projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   const labels = uiLabels[lang];
 
   return (
@@ -49,7 +85,7 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
         <button
           type="button"
           aria-pressed={activeFilter === 'ALL'}
-          onClick={() => setActiveFilter('ALL')}
+          onClick={() => handleFilterSelect('ALL')}
         >
           {labels.filterAll}
         </button>
@@ -60,7 +96,7 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
               key={tag}
               type="button"
               aria-pressed={isSelected}
-              onClick={() => setActiveFilter(tag)}
+              onClick={() => handleFilterSelect(tag)}
             >
               {tag}
             </button>
@@ -69,7 +105,7 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
       </div>
 
       <div className="grid">
-        {filteredProjects.map((p) => {
+        {paginatedProjects.map((p) => {
           const description = lang === 'en' ? p.desc_en : p.desc_es;
           const statusText = statusLabels[lang][p.status];
 
@@ -162,6 +198,87 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
           );
         })}
       </div>
+
+      {totalPages > 1 && (
+        <nav
+          className="pagination"
+          aria-label={lang === 'es' ? 'Paginación de proyectos' : 'Projects pagination'}
+        >
+          <div className="pagination-info">
+            <span>
+              {labels.showing}{' '}
+              <strong className="pagination-num">{filteredProjects.length > 0 ? startIndex + 1 : 0}</strong>
+              {' - '}
+              <strong className="pagination-num">{endIndex}</strong> {labels.of}{' '}
+              <strong className="pagination-num">{filteredProjects.length}</strong> {labels.projectsCount}
+            </span>
+          </div>
+
+          <div className="pagination-controls">
+            <button
+              type="button"
+              className="pagination-btn pagination-nav-btn"
+              disabled={currentPage === 1}
+              onClick={() => goToPage(currentPage - 1)}
+              aria-label={labels.prevPage}
+            >
+              <svg
+                className="pagination-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              <span>{labels.prevPage}</span>
+            </button>
+
+            <div className="pagination-pages" role="group" aria-label={lang === 'es' ? 'Páginas' : 'Pages'}>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                const isCurrent = page === currentPage;
+                return (
+                  <button
+                    key={page}
+                    type="button"
+                    className={`pagination-btn pagination-page-btn ${isCurrent ? 'active' : ''}`}
+                    aria-current={isCurrent ? 'page' : undefined}
+                    aria-label={`${labels.page} ${page}`}
+                    onClick={() => goToPage(page)}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              className="pagination-btn pagination-nav-btn"
+              disabled={currentPage === totalPages}
+              onClick={() => goToPage(currentPage + 1)}
+              aria-label={labels.nextPage}
+            >
+              <span>{labels.nextPage}</span>
+              <svg
+                className="pagination-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </nav>
+      )}
     </>
   );
 }

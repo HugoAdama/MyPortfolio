@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import AuroraWaves from '../components/AuroraWaves.astro';
 import { getAssetPath } from '../utils/paths';
 
 interface Props {
@@ -53,6 +54,7 @@ const {
 </head>
 <body>
   <a class="skip" href="#proyectos">Saltar al contenido</a>
+  <AuroraWaves />
   <slot />
 </body>
 </html>
