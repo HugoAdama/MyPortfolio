@@ -297,6 +297,7 @@ async function buildPDF(lang) {
   // --- EXPERIENCIA LABORAL ---
   drawSectionHeader(data.sections.experience);
   
+  // Line 1: Role on left, Date right-aligned
   page.drawText(data.experience.role, {
     x: marginX,
     y: cursorY,
@@ -305,22 +306,25 @@ async function buildPDF(lang) {
     color: colorPrimary,
   });
   
-  const roleWidth = fontBold.widthOfTextAtSize(data.experience.role, 10);
-  page.drawText(`${data.experience.company}  |  ${data.experience.location}`, {
-    x: marginX + roleWidth + 12,
-    y: cursorY,
-    size: 9.5,
-    font: fontRegular,
-    color: colorMuted,
-  });
+  const dateWidth = fontBold.widthOfTextAtSize(data.experience.date, 9);
   page.drawText(data.experience.date, {
-    x: width - marginX - 110,
+    x: width - marginX - dateWidth,
     y: cursorY,
     size: 9,
     font: fontBold,
     color: colorPrimary,
   });
-  cursorY -= 14;
+  cursorY -= 12.5;
+
+  // Line 2: Company | Location
+  page.drawText(`${data.experience.company}  |  ${data.experience.location}`, {
+    x: marginX,
+    y: cursorY,
+    size: 9,
+    font: fontOblique,
+    color: colorMuted,
+  });
+  cursorY -= 13.5;
 
   for (const b of data.experience.bullets) {
     page.drawText('•', { x: marginX + 6, y: cursorY, size: 8.5, font: fontRegular, color: colorAccent });
@@ -366,8 +370,9 @@ async function buildPDF(lang) {
       font: fontBold,
       color: colorPrimary,
     });
+    const dateWidth = fontRegular.widthOfTextAtSize(e.date, 8.5);
     page.drawText(e.date, {
-      x: width - marginX - 110,
+      x: width - marginX - dateWidth,
       y: cursorY,
       size: 8.5,
       font: fontRegular,
