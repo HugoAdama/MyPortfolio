@@ -64,7 +64,9 @@ portfolio/
 │       └── deploy.yml         # GitHub Actions CI/CD for automated GitHub Pages deployment
 ├── public/
 │   ├── capturas/              # High-resolution screenshots of featured projects
-│   ├── cv-hugo-adama.pdf      # Downloadable resume
+│   ├── cv-hugo-adama.pdf      # Default resume (Spanish)
+│   ├── cv-hugo-adama-es.pdf   # Spanish resume (ATS-friendly)
+│   ├── cv-hugo-adama-en.pdf   # English resume (ATS-friendly)
 │   └── favicon.svg            # Vector favicon
 ├── src/
 │   ├── components/
