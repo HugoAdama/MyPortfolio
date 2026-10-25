@@ -27,12 +27,12 @@ import { getAssetPath } from '../utils/paths';
       <div class="contact-actions">
         <!-- High-contrast Email Box with Instant Copy -->
         <div class="email-control" id="email-box">
-          <a class="email-link" href="mailto:contacto@hugoadama.dev">
+          <a class="email-link" href="mailto:hugoadama@outlook.com">
             <svg class="c-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            <span class="mono email-text">contacto@hugoadama.dev</span>
+            <span class="mono email-text">hugoadama@outlook.com</span>
           </a>
 
           <button id="copy-email-btn" class="copy-btn" type="button" aria-label="Copiar correo">
@@ -118,7 +118,7 @@ import { getAssetPath } from '../utils/paths';
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText('contacto@hugoadama.dev');
+        await navigator.clipboard.writeText('hugoadama@outlook.com');
         
         // Show success state
         if (copyIcon && checkIcon) {

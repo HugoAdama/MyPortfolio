@@ -150,7 +150,7 @@ Lima, Peru
 
 - GitHub: [https://github.com/HugoAdama](https://github.com/HugoAdama)
 - LinkedIn: [https://www.linkedin.com/in/hugoadama](https://www.linkedin.com/in/hugoadama)
-- Email: [contacto@hugoadama.dev](mailto:contacto@hugoadama.dev)
+- Email: [hugoadama@outlook.com](mailto:hugoadama@outlook.com)
 
 ---
 

@@ -1,54 +1,247 @@
 ---
-// Aurora Glow Waves background component
+// Aurora Glow Waves background component with dynamic fluid canvas waves
 ---
 <div class="aurora-bg" aria-hidden="true">
-  <!-- Glowing Aurora Light Orbs -->
+  <!-- Glowing Aurora Light Orbs for atmospheric depth -->
   <div class="aurora-orb orb-cyan"></div>
   <div class="aurora-orb orb-violet"></div>
   <div class="aurora-orb orb-mint"></div>
 
-  <!-- Undulating Wave Ribbon 1 -->
-  <svg
-    class="aurora-wave wave-primary"
-    viewBox="0 0 1440 480"
-    preserveAspectRatio="none"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="aurora-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.32" />
-        <stop offset="50%" stop-color="var(--violet)" stop-opacity="0.24" />
-        <stop offset="100%" stop-color="var(--mint)" stop-opacity="0.18" />
-      </linearGradient>
-    </defs>
-    <path
-      d="M0,192 C240,280 480,96 720,180 C960,264 1200,120 1440,192 L1440,480 L0,480 Z"
-      fill="url(#aurora-grad-1)"
-    />
-  </svg>
-
-  <!-- Undulating Wave Ribbon 2 (Counter-phase) -->
-  <svg
-    class="aurora-wave wave-secondary"
-    viewBox="0 0 1440 480"
-    preserveAspectRatio="none"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="aurora-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="var(--violet)" stop-opacity="0.28" />
-        <stop offset="60%" stop-color="var(--cyan)" stop-opacity="0.20" />
-        <stop offset="100%" stop-color="var(--panel)" stop-opacity="0" />
-      </linearGradient>
-    </defs>
-    <path
-      d="M0,240 C320,140 640,320 960,210 C1200,130 1360,250 1440,220 L1440,480 L0,480 Z"
-      fill="url(#aurora-grad-2)"
-    />
-  </svg>
+  <!-- Dynamic Fluid Wave Canvas -->
+  <canvas id="aurora-waves-canvas" class="aurora-canvas"></canvas>
 </div>
+
+<script>
+  function initAuroraWaves() {
+    const canvas = document.getElementById('aurora-waves-canvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReducedMotion = mediaQuery.matches;
+    mediaQuery.addEventListener('change', (e) => {
+      prefersReducedMotion = e.matches;
+    });
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+
+    function resize() {
+      if (!canvas) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      if (ctx) {
+        ctx.scale(dpr, dpr);
+      }
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Track mouse coordinates for gentle fluid wave reaction
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let targetMouseX = mouseX;
+    let targetMouseY = mouseY;
+
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        targetMouseX = e.clientX;
+        targetMouseY = e.clientY;
+      },
+      { passive: true }
+    );
+
+    // Multi-layer wave definitions with varying frequencies, speeds, and amplitudes
+    const waves = [
+      {
+        baseYRatio: 0.38,
+        amplitude: 36,
+        wavelength: 0.0028,
+        speed: 0.024,
+        harmonicAmp: 16,
+        harmonicWavelength: 0.0055,
+        phase: 0,
+        darkStroke: 'rgba(111, 211, 255, 0.45)',
+        darkFillStart: 'rgba(111, 211, 255, 0.14)',
+        darkFillEnd: 'rgba(111, 211, 255, 0.0)',
+        lightStroke: 'rgba(2, 132, 199, 0.35)',
+        lightFillStart: 'rgba(2, 132, 199, 0.08)',
+        lightFillEnd: 'rgba(2, 132, 199, 0.0)',
+        lineWidth: 1.8,
+      },
+      {
+        baseYRatio: 0.55,
+        amplitude: 44,
+        wavelength: 0.0022,
+        speed: -0.018,
+        harmonicAmp: 20,
+        harmonicWavelength: 0.0042,
+        phase: 2.1,
+        darkStroke: 'rgba(182, 156, 255, 0.40)',
+        darkFillStart: 'rgba(182, 156, 255, 0.12)',
+        darkFillEnd: 'rgba(182, 156, 255, 0.0)',
+        lightStroke: 'rgba(124, 58, 237, 0.30)',
+        lightFillStart: 'rgba(124, 58, 237, 0.07)',
+        lightFillEnd: 'rgba(124, 58, 237, 0.0)',
+        lineWidth: 1.6,
+      },
+      {
+        baseYRatio: 0.72,
+        amplitude: 48,
+        wavelength: 0.0019,
+        speed: 0.016,
+        harmonicAmp: 22,
+        harmonicWavelength: 0.0035,
+        phase: 4.2,
+        darkStroke: 'rgba(142, 230, 184, 0.35)',
+        darkFillStart: 'rgba(142, 230, 184, 0.10)',
+        darkFillEnd: 'rgba(142, 230, 184, 0.0)',
+        lightStroke: 'rgba(5, 150, 105, 0.25)',
+        lightFillStart: 'rgba(5, 150, 105, 0.06)',
+        lightFillEnd: 'rgba(5, 150, 105, 0.0)',
+        lineWidth: 1.4,
+      },
+      {
+        baseYRatio: 0.88,
+        amplitude: 38,
+        wavelength: 0.0032,
+        speed: -0.022,
+        harmonicAmp: 14,
+        harmonicWavelength: 0.0065,
+        phase: 1.2,
+        darkStroke: 'rgba(111, 211, 255, 0.32)',
+        darkFillStart: 'rgba(182, 156, 255, 0.08)',
+        darkFillEnd: 'rgba(111, 211, 255, 0.0)',
+        lightStroke: 'rgba(2, 132, 199, 0.22)',
+        lightFillStart: 'rgba(124, 58, 237, 0.05)',
+        lightFillEnd: 'rgba(2, 132, 199, 0.0)',
+        lineWidth: 1.2,
+      },
+    ];
+
+    let animationFrameId: number;
+    let isVisible = true;
+
+    document.addEventListener('visibilitychange', () => {
+      isVisible = !document.hidden;
+      if (isVisible) {
+        lastTime = performance.now();
+        render();
+      }
+    });
+
+    let lastTime = performance.now();
+
+    function render() {
+      if (!isVisible) return;
+
+      const now = performance.now();
+      const delta = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      if (!ctx || !canvas) return;
+
+      // Smooth cursor interpolation
+      mouseX += (targetMouseX - mouseX) * 0.04;
+      mouseY += (targetMouseY - mouseY) * 0.04;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      // Draw each wave
+      for (let i = 0; i < waves.length; i++) {
+        const w = waves[i];
+
+        if (!prefersReducedMotion) {
+          w.phase += w.speed * delta * 60;
+        }
+
+        const baseY = height * w.baseYRatio;
+        const strokeColor = isLight ? w.lightStroke : w.darkStroke;
+        const fillStart = isLight ? w.lightFillStart : w.darkFillStart;
+        const fillEnd = isLight ? w.lightFillEnd : w.darkFillEnd;
+
+        // Create vertical gradient for filled wave body
+        const grad = ctx.createLinearGradient(0, baseY - w.amplitude, 0, height);
+        grad.addColorStop(0, fillStart);
+        grad.addColorStop(1, fillEnd);
+
+        ctx.beginPath();
+        ctx.moveTo(0, height);
+
+        // Calculate points across screen width with step of 8px for high performance
+        const step = 8;
+        for (let x = 0; x <= width + step; x += step) {
+          // Distance to mouse influences amplitude subtly for interactivity
+          const distToMouse = Math.abs(x - mouseX);
+          const mouseFactor = Math.max(0, 1 - distToMouse / (width * 0.45));
+          const interactiveAmp = w.amplitude + mouseFactor * 14;
+
+          const y1 = Math.sin(x * w.wavelength + w.phase) * interactiveAmp;
+          const y2 = Math.cos(x * w.harmonicWavelength + w.phase * 0.7) * (w.harmonicAmp + mouseFactor * 6);
+          const y = baseY + y1 + y2;
+
+          if (x === 0) {
+            ctx.lineTo(0, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+
+        ctx.lineTo(width, height);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Stroke the glowing wave crest line
+        ctx.beginPath();
+        for (let x = 0; x <= width + step; x += step) {
+          const distToMouse = Math.abs(x - mouseX);
+          const mouseFactor = Math.max(0, 1 - distToMouse / (width * 0.45));
+          const interactiveAmp = w.amplitude + mouseFactor * 14;
+
+          const y1 = Math.sin(x * w.wavelength + w.phase) * interactiveAmp;
+          const y2 = Math.cos(x * w.harmonicWavelength + w.phase * 0.7) * (w.harmonicAmp + mouseFactor * 6);
+          const y = baseY + y1 + y2;
+
+          if (x === 0) {
+            ctx.moveTo(0, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = w.lineWidth;
+        ctx.stroke();
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    }
+
+    render();
+  }
+
+  // Initialize on page load and on Astro view transitions if used
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuroraWaves);
+  } else {
+    initAuroraWaves();
+  }
+  document.addEventListener('astro:page-load', initAuroraWaves);
+</script>
 
 <style>
   .aurora-bg {
@@ -62,12 +255,21 @@
     contain: strict;
   }
 
-  /* Bioluminescent Glow Orbs */
+  .aurora-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* Bioluminescent Glow Orbs for background depth */
   .aurora-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(75px);
-    opacity: 0.28;
+    filter: blur(85px);
+    opacity: 0.32;
     will-change: transform, opacity;
     mix-blend-mode: screen;
   }
@@ -75,128 +277,81 @@
   [data-theme="light"] .aurora-orb {
     mix-blend-mode: multiply;
     opacity: 0.16;
-    filter: blur(90px);
+    filter: blur(95px);
   }
 
   .orb-cyan {
     top: 5%;
-    left: 8%;
-    width: 48vw;
-    height: 48vw;
-    max-width: 550px;
-    max-height: 550px;
+    left: 10%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 520px;
+    max-height: 520px;
     background: radial-gradient(circle, var(--cyan) 0%, rgba(111, 211, 255, 0) 70%);
-    animation: drift-orb-1 18s ease-in-out infinite alternate;
+    animation: drift-orb-1 14s ease-in-out infinite alternate;
   }
 
   .orb-violet {
     top: 35%;
-    right: 5%;
-    width: 52vw;
-    height: 52vw;
-    max-width: 600px;
-    max-height: 600px;
+    right: 8%;
+    width: 50vw;
+    height: 50vw;
+    max-width: 580px;
+    max-height: 580px;
     background: radial-gradient(circle, var(--violet) 0%, rgba(182, 156, 255, 0) 70%);
-    animation: drift-orb-2 22s ease-in-out infinite alternate;
+    animation: drift-orb-2 16s ease-in-out infinite alternate;
   }
 
   .orb-mint {
-    bottom: -10%;
-    left: 20%;
-    width: 45vw;
-    height: 45vw;
-    max-width: 500px;
-    max-height: 500px;
+    bottom: -5%;
+    left: 25%;
+    width: 42vw;
+    height: 42vw;
+    max-width: 480px;
+    max-height: 480px;
     background: radial-gradient(circle, var(--mint) 0%, rgba(142, 230, 184, 0) 70%);
-    animation: drift-orb-3 26s ease-in-out infinite alternate;
+    animation: drift-orb-3 18s ease-in-out infinite alternate;
   }
 
-  /* Ambient Wave Ribbons */
-  .aurora-wave {
-    position: absolute;
-    left: -5%;
-    width: 110%;
-    filter: blur(55px);
-    will-change: transform;
-    pointer-events: none;
-  }
-
-  .wave-primary {
-    top: 15%;
-    height: 60vh;
-    animation: wave-float-1 20s ease-in-out infinite alternate;
-  }
-
-  .wave-secondary {
-    top: 40%;
-    height: 65vh;
-    animation: wave-float-2 25s ease-in-out infinite alternate;
-  }
-
-  /* Keyframe Animations */
+  /* Keyframe Animations for background orbs */
   @keyframes drift-orb-1 {
     0% {
       transform: translate3d(0, 0, 0) scale(1);
     }
     50% {
-      transform: translate3d(40px, 30px, 0) scale(1.08);
+      transform: translate3d(50px, 40px, 0) scale(1.12);
     }
     100% {
-      transform: translate3d(-30px, 50px, 0) scale(0.94);
+      transform: translate3d(-40px, 60px, 0) scale(0.92);
     }
   }
 
   @keyframes drift-orb-2 {
     0% {
-      transform: translate3d(0, 0, 0) scale(0.96);
+      transform: translate3d(0, 0, 0) scale(0.95);
     }
     50% {
-      transform: translate3d(-50px, -35px, 0) scale(1.06);
+      transform: translate3d(-60px, -45px, 0) scale(1.10);
     }
     100% {
-      transform: translate3d(30px, -20px, 0) scale(1.02);
+      transform: translate3d(40px, -30px, 0) scale(1.04);
     }
   }
 
   @keyframes drift-orb-3 {
     0% {
-      transform: translate3d(0, 0, 0) scale(1.02);
+      transform: translate3d(0, 0, 0) scale(1.04);
     }
     50% {
-      transform: translate3d(45px, -40px, 0) scale(0.95);
+      transform: translate3d(55px, -50px, 0) scale(0.92);
     }
     100% {
-      transform: translate3d(-40px, 25px, 0) scale(1.1);
-    }
-  }
-
-  @keyframes wave-float-1 {
-    0% {
-      transform: translate3d(-2%, 0, 0) scaleY(1) rotate(-1deg);
-    }
-    50% {
-      transform: translate3d(2%, -18px, 0) scaleY(1.06) rotate(0.5deg);
-    }
-    100% {
-      transform: translate3d(3%, 12px, 0) scaleY(0.94) rotate(1deg);
-    }
-  }
-
-  @keyframes wave-float-2 {
-    0% {
-      transform: translate3d(2%, 0, 0) scaleY(0.95) rotate(1deg);
-    }
-    50% {
-      transform: translate3d(-3%, 16px, 0) scaleY(1.05) rotate(-0.5deg);
-    }
-    100% {
-      transform: translate3d(-1%, -14px, 0) scaleY(1) rotate(-1deg);
+      transform: translate3d(-45px, 35px, 0) scale(1.14);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora-orb,
-    .aurora-wave {
+    .aurora-orb {
       animation: none !important;
     }
   }
