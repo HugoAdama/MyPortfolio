@@ -69,6 +69,15 @@ export const uiLabels = {
 
 export const projects: Project[] = [
   {
+    title: 'MariaConta',
+    desc_es: 'Software de gestión local-first para pequeños negocios peruanos (Nuevo RUS). Incluye jornada y caja única (efectivo, Yape, Plin), conciliación de pagos mixtos, inventario maestro multirubro (bodega, restaurante, salón), PWA móvil offline con sincronización en red local HTTPS e impresión térmica auditada.',
+    desc_en: 'Local-first management software for Peruvian small businesses (Nuevo RUS). Features multi-channel daily cash reconciliations (Cash, Yape, Plin), split payments, multi-profile master inventory, encrypted offline mobile PWA with local HTTPS sync, and audited thermal receipt printing.',
+    tags: ['Local-First', 'Python', 'PWA'],
+    status: 'en-progreso',
+    category: 'web-apps',
+    img: '/capturas/mariaconta.png',
+  },
+  {
     title: 'Git Command Web',
     desc_es: 'Guía interactiva y visual del modelo mental de Git. Incluye pipeline de transporte de cambios en 4 etapas, simulador de terminal en vivo, resolución visual de conflictos 3-way merge, simulador de Git Bisect, playground de rebase interactivo y generadores de comandos.',
     desc_en: 'Interactive, visual mental-model guide to Git. Features a 4-stage change lifecycle pipeline, live terminal simulator, 3-way merge conflict resolver, Git Bisect simulator, interactive rebase playground, and command builders.',
